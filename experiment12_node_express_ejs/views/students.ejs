@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<nav>
+    <div class="container nav-inner">
+        <a href="/">Home</a>
+        <a href="/students">Students</a>
+        <a href="/api/students">REST API</a>
+    </div>
+</nav>
+
+<main class="container">
+    <section class="card">
+        <h1>Student Directory</h1>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% students.forEach(student => { %>
+                    <tr>
+                        <td><%= student.id %></td>
+                        <td><%= student.name %></td>
+                        <td><%= student.email %></td>
+                        <td><%= student.course %></td>
+                        <td><a href="/student/<%= student.id %>">View</a></td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Add Student</h2>
+        <p class="muted">This form sends data to the Express POST route.</p>
+
+        <form action="/students" method="POST">
+            <label>
+                Name
+                <input type="text" name="name" placeholder="Enter student name" required>
+            </label>
+
+            <label>
+                Email
+                <input type="email" name="email" placeholder="student@example.com" required>
+            </label>
+
+            <label>
+                Course
+                <input type="text" name="course" placeholder="e.g. Computer Science" required>
+            </label>
+
+            <button type="submit">Add Student</button>
+        </form>
+    </section>
+</main>
+
+<footer>Experiment 12 • POST Form Demonstration</footer>
+</body>
+</html>
