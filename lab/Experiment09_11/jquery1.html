@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exp 10 - jQuery Program 1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a href="index.html">Students</a><a href="jquery2.html">jQuery 2</a></nav>
+<h1>jQuery program 1: DOM and effects</h1>
+<button id="toggle">Show / hide</button>
+<button id="color">Change colour</button>
+<div class="card" id="box">This box is controlled by jQuery.</div>
+<p><input id="item" aria-label="Item"> <button id="add">Add item</button></p>
+<ul id="list"></ul>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+  $("#toggle").on("click", () => $("#box").slideToggle());
+  $("#color").on("click", () => $("#box").css("background", "gold"));
+  $("#add").on("click", function () {
+    const text = $("#item").val().trim();
+    if (text) $("<li>").text(text + " (click to remove)").appendTo("#list");
+    $("#item").val("");
+  });
+  $("#list").on("click", "li", function () { $(this).remove(); });
+</script>
+</body>
+</html>

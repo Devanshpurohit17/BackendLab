@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exp 10 - jQuery Program 2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a href="index.html">Students</a><a href="jquery1.html">jQuery 1</a></nav>
+<h1>jQuery program 2: AJAX</h1>
+<button id="load">Load students</button>
+<p id="status" role="status"></p>
+<ul id="list"></ul>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+  $("#load").on("click", function () {
+    $.ajax({ url: "students.json", method: "GET", dataType: "json" })
+      .done(function (data) {
+        $("#list").empty();
+        data.students.forEach((s) => $("<li>").text(s.name + " - " + s.course).appendTo("#list"));
+        $("#status").text("Loaded");
+      })
+      .fail(() => $("#status").text("Unable to load students"));
+  });
+</script>
+</body>
+</html>

@@ -55,7 +55,7 @@ test_get_cannot_delete (todo.tests.TaskTests.test_get_cannot_delete) ... ok
 test_toggle_and_delete (todo.tests.TaskTests.test_toggle_and_delete) ... ok
 
 ----------------------------------------------------------------------
-Ran 6 tests in 0.034s
+Ran 6 tests in 0.070s
 
 OK
 Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...

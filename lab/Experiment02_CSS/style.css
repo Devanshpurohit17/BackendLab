@@ -1,0 +1,4 @@
+/* external CSS shared by all pages */
+body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 16px; line-height: 1.6; }
+footer { background: #1d4e89; color: #fff; padding: 12px; margin-top: 24px; }
+nav a { margin-right: 12px; }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exp 11 - Course Directory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a href="index.html">Students</a></nav>
+<h1>Course directory</h1>
+<p id="status" role="status">Loading...</p>
+<table><thead><tr><th>Code</th><th>Title</th><th>Credits</th></tr></thead><tbody id="rows"></tbody></table>
+<script>
+  fetch("courses.json")
+    .then((response) => {
+      if (!response.ok) throw new Error("HTTP " + response.status);
+      return response.json();
+    })
+    .then(({ courses }) => {
+      courses.forEach((course) => {
+        const row = document.getElementById("rows").insertRow();
+        [course.code, course.title, course.credits].forEach((v) => { row.insertCell().textContent = v; });
+      });
+      document.getElementById("status").textContent = courses.length + " courses";
+    })
+    .catch((error) => { document.getElementById("status").textContent = error.message; });
+</script>
+</body>
+</html>

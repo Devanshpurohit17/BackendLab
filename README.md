@@ -9,9 +9,14 @@ Devansh Purohit, SAP ID 590017030
 | Work | Aim |
 |---|---|
 | [Experiment 1: HTML5 elements](<lab/Exp 1>) | Build pages with HTML5 elements, plus five practice tasks: blog, form, table, gallery and interactive elements. |
+| [Experiment 2: Types of CSS](<lab/Experiment02_CSS>) | Use inline, internal and external CSS, selectors, layouts, animation and themes. |
+| [Experiment 3: Responsive page](<lab/Experiment03_Responsive>) | Build a mobile-first page with Flexbox, Grid, media queries and dark mode. |
+| [Experiment 4: Bootstrap and Tailwind](<lab/Experiment04_Bootstrap>) | Build the same responsive page and contact form in two frameworks. |
 | [Experiment 5: JavaScript arrays, objects and functions](<lab/Experiment 5>) | Use arrays, objects and functions, and build a small library manager. |
+| [Experiment 6: Form validation](<lab/Experiment06_Form_Validation>) | Validate a registration form using JavaScript. |
 | [Experiment 7: ES6 and DOM](<lab/Experiment07_DOM>) | Use ES6 features and change a page through the DOM. |
 | [Experiment 8: Event handling](<lab/Experiment08>) | Build a to-do list using events, delegation and bubbling. |
+| [Experiments 9, 10 and 11: AJAX and jQuery](<lab/Experiment09_11>) | Load HTML, XML and JSON using AJAX, write two jQuery programs and connect to an Express API. |
 | [Experiment 12: Node, Express and EJS](<lab/Exp 12>) | Create routes, a calculator API, student management, and EJS pages and forms. |
 | [Experiment 12B: State management](<lab/Exp 12B>) | Build a login system and a to-do list using sessions and cookies. |
 | [Experiment 13A: MongoDB and Mongoose](<lab/Experiment13A>) | Register and log in users stored in MongoDB. Passwords are hashed with bcrypt. |
@@ -42,4 +47,4 @@ Devansh Purohit, SAP ID 590017030
 
 ## AI use disclosure
 
-The code in this repository was generated with the help of an AI tool, as disclosed under the course AI policy.
+The code and written answers in this repository were generated with the help of an AI tool, as disclosed under the course AI policy.

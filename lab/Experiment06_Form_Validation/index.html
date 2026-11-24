@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exp 6 - Form Validation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Student Registration</h1>
+<form id="form" novalidate>
+  <label for="name">Name</label><input id="name"><small class="error" id="name-error"></small>
+  <label for="email">Email</label><input id="email"><small class="error" id="email-error"></small>
+  <label for="phone">Phone</label><input id="phone"><small class="error" id="phone-error"></small>
+  <label for="password">Password</label><input id="password" type="password"><small class="error" id="password-error"></small>
+  <label for="confirm">Confirm password</label><input id="confirm" type="password"><small class="error" id="confirm-error"></small>
+  <button>Register</button>
+</form>
+<p id="result" role="status"></p>
+<script src="validation.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5 - Theme</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<style>
+  :root { --bg: #ffffff; --text: #222222; --card: #eef5ff; }
+  .dark { --bg: #181a20; --text: #eeeeee; --card: #2a2e38; }
+  html { background: var(--bg); }
+  body { background: var(--bg); color: var(--text); transition: background 0.3s; }
+  .card { background: var(--card); padding: 16px; border-radius: 8px; margin: 12px 0; }
+</style>
+<h1>Theme creator</h1>
+<button id="toggle">Toggle dark mode</button>
+<div class="card">Card one</div>
+<div class="card">Card two</div>
+<script>
+  document.getElementById("toggle").addEventListener("click", function () {
+    document.documentElement.classList.toggle("dark");
+  });
+</script>
+</body>
+</html>

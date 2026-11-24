@@ -46,7 +46,7 @@ test_success (students.tests.ExternalServiceTest.test_success) ... ok
 test_timeout (students.tests.ExternalServiceTest.test_timeout) ... ok
 
 ----------------------------------------------------------------------
-Ran 8 tests in 0.014s
+Ran 8 tests in 0.038s
 
 OK
 Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...

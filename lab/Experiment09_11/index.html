@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exp 9-11 - AJAX</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a href="index.html">Students</a><a href="jquery1.html">jQuery 1</a><a href="jquery2.html">jQuery 2</a><a href="courses.html">Courses</a></nav>
+<h1>Student portal using AJAX</h1>
+<button id="json">Load JSON</button>
+<button id="xml">Load XML</button>
+<button id="html">Load HTML</button>
+<button id="api">Load from Express API</button>
+<p>
+  <input id="search" placeholder="Search name" aria-label="Search name">
+  <select id="course" aria-label="Course"></select>
+  <button id="filter">Filter with JavaScript</button>
+  <button id="filterJquery">Filter with jQuery</button>
+</p>
+<p id="status" role="status"></p>
+<table>
+  <thead><tr><th>ID</th><th>Name</th><th>Course</th><th>Email</th><th>Semester</th></tr></thead>
+  <tbody id="rows"></tbody>
+</table>
+<div class="card" id="notice" hidden></div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="app.js"></script>
+</body>
+</html>

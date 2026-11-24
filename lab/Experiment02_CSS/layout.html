@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3 - Layout</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<style>
+  .navbar { display: flex; justify-content: space-between; flex-wrap: wrap; background: #222; padding: 12px; }
+  .navbar a { color: white; }
+  .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-top: 16px; }
+  .grid > * { background: #eef5ff; padding: 16px; }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+</style>
+<div class="navbar"><a href="index.html">Home</a><div><a href="#posts">Posts</a><a href="#side">About</a></div></div>
+<div class="grid">
+  <main id="posts"><h1>Main content</h1><p>The navigation uses Flexbox and this area uses Grid.</p></main>
+  <aside id="side"><h2>Sidebar</h2><p>It moves below on mobile.</p></aside>
+</div>
+</body>
+</html>

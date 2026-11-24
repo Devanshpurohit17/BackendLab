@@ -1,0 +1,23 @@
+/* mobile first */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #ffffff; color: #222222; }
+header, footer { background: #1d4e89; color: #fff; padding: 16px; }
+nav { display: flex; flex-direction: column; gap: 8px; }
+nav a { color: #fff; }
+.row, .grid { display: grid; gap: 16px; padding: 16px; }
+.card { background: #e8eef6; padding: 16px; border-radius: 8px; }
+img { max-width: 100%; height: auto; }
+
+@media (min-width: 600px) {
+  nav { flex-direction: row; justify-content: space-between; }
+  .row { display: flex; }
+  .row .card { flex: 1; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1025px) {
+  .grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (prefers-color-scheme: dark) {
+  body { background-color: #1a1a1a; color: #e0e0e0; }
+  .card { background: #2c2c2c; }
+}

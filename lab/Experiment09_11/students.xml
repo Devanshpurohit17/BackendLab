@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+  <student id="101"><name>Aarav</name><course>B.Tech CSE</course><email>aarav@example.com</email><semester>5</semester></student>
+  <student id="102"><name>Meera</name><course>B.Tech IT</course><email>meera@example.com</email><semester>3</semester></student>
+  <student id="103"><name>Rohan</name><course>B.Tech CSE</course><email>rohan@example.com</email><semester>7</semester></student>
+</students>
