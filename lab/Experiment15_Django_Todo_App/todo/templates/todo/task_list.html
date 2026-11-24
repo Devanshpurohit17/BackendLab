@@ -1,0 +1,20 @@
+{% extends "todo/base.html" %}
+{% block title %}Tasks{% endblock %}
+{% block content %}
+<h1>Tasks</h1>
+<ul class="tasks">
+  {% for task in tasks %}
+  <li>
+    <span class="{% if task.completed %}done{% endif %}">{{ task.title }}</span>
+    <form action="{% url 'toggle_task' task.id %}" method="post">
+      {% csrf_token %}<button>{% if task.completed %}Undo{% else %}Complete{% endif %}</button>
+    </form>
+    <form action="{% url 'delete_task' task.id %}" method="post" class="delete">
+      {% csrf_token %}<button>Delete</button>
+    </form>
+  </li>
+  {% empty %}
+  <li>No tasks yet. Add your first task.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

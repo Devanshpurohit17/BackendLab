@@ -1,0 +1,7 @@
+{
+  "name": "lecture13-mongo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": { "start": "node students.js" },
+  "dependencies": { "mongodb": "^6.12.0" }
+}

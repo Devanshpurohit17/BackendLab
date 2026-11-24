@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Timetable</title></head>
+<body>
+  <h1>Course Timetable</h1>
+  <table border="1" cellpadding="8">
+    <tr><th>Day</th><th>Time</th><th>Subject</th><th>Faculty</th></tr>
+    <% timetable.forEach((row) => { %>
+      <tr>
+        <td><%= row.day %></td><td><%= row.time %></td>
+        <td><%= row.subject %></td><td><%= row.faculty %></td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>

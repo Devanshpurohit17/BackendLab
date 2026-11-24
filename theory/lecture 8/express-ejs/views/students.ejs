@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Students</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+  <h1>Students</h1>
+  <table>
+    <tr><th>ID</th><th>Name</th><th>Branch</th></tr>
+    <% students.forEach((s, i) => { %>
+      <tr class="<%= i % 2 === 0 ? 'even' : 'odd' %>"><td><%= s.id %></td><td><%= s.name %></td><td><%= s.branch %></td></tr>
+    <% }) %>
+  </table>
+  <a href="/about">About</a>
+</body>
+</html>

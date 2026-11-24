@@ -1,0 +1,16 @@
+{
+  "name": "exp12b-state-management",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "login": "node login-app.js",
+    "todo": "node todo-app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1"
+  }
+}

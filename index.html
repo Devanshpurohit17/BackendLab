@@ -1,1187 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HTML5 Laboratory Experiment 1 demonstrating semantic elements, forms, multimedia, tables and interactive HTML5 features.">
-    <meta name="author" content="B.Tech Computer Science Student">
-    <title>Experiment 1 | HTML5 Elements Showcase</title>
-
-    <style>
-        :root {
-            --primary: #4f46e5;
-            --primary-dark: #3730a3;
-            --secondary: #06b6d4;
-            --accent: #f59e0b;
-            --success: #10b981;
-            --danger: #ef4444;
-            --text: #172033;
-            --muted: #64748b;
-            --bg: #f5f7fb;
-            --card: #ffffff;
-            --border: #e2e8f0;
-            --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-            --radius: 18px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 90px;
-        }
-
-        body {
-            font-family: Inter, "Segoe UI", Arial, sans-serif;
-            color: var(--text);
-            background: var(--bg);
-            line-height: 1.7;
-        }
-
-        a {
-            color: var(--primary);
-        }
-
-        img, video, iframe {
-            max-width: 100%;
-        }
-
-        .container {
-            width: min(1180px, 92%);
-            margin-inline: auto;
-        }
-
-        /* ---------- HEADER ---------- */
-        header {
-            background:
-                radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.35), transparent 25%),
-                linear-gradient(135deg, #111827, #312e81 55%, #4f46e5);
-            color: white;
-        }
-
-        .hero {
-            min-height: 440px;
-            display: grid;
-            place-items: center;
-            text-align: center;
-            padding: 70px 0;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 7px 14px;
-            border: 1px solid rgba(255,255,255,.25);
-            border-radius: 999px;
-            background: rgba(255,255,255,.10);
-            margin-bottom: 18px;
-            font-size: .9rem;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.3rem, 6vw, 4.8rem);
-            line-height: 1.05;
-            margin-bottom: 18px;
-        }
-
-        .hero p {
-            max-width: 760px;
-            margin: auto;
-            color: #dbeafe;
-            font-size: 1.08rem;
-        }
-
-        .hero-actions {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 28px;
-        }
-
-        .btn {
-            display: inline-block;
-            border: 0;
-            padding: 12px 20px;
-            border-radius: 10px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-            font-weight: 700;
-            transition: .2s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            background: var(--primary-dark);
-        }
-
-        .btn-light {
-            background: white;
-            color: #1e1b4b;
-        }
-
-        .btn-light:hover {
-            background: #eef2ff;
-        }
-
-        /* ---------- NAVIGATION ---------- */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(17, 24, 39, .95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,.1);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 4px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            display: block;
-            padding: 13px 15px;
-            color: #e5e7eb;
-            text-decoration: none;
-            font-size: .92rem;
-            border-radius: 8px;
-        }
-
-        nav a:hover,
-        nav a.active {
-            background: rgba(255,255,255,.12);
-            color: white;
-        }
-
-        /* ---------- COMMON SECTIONS ---------- */
-        main {
-            padding: 35px 0 60px;
-        }
-
-        section {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: clamp(22px, 4vw, 40px);
-            margin-bottom: 25px;
-            box-shadow: var(--shadow);
-        }
-
-        .section-heading {
-            margin-bottom: 22px;
-        }
-
-        .section-heading h2 {
-            font-size: 1.9rem;
-            margin-bottom: 5px;
-        }
-
-        .section-heading p {
-            color: var(--muted);
-        }
-
-        h3 {
-            margin: 22px 0 10px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .card {
-            padding: 20px;
-            background: #f8fafc;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-        }
-
-        .card h3 {
-            margin-top: 0;
-            color: var(--primary-dark);
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 3px 9px;
-            border-radius: 999px;
-            background: #eef2ff;
-            color: var(--primary-dark);
-            font-size: .8rem;
-            font-weight: 700;
-        }
-
-        /* ---------- HTML TEXT ELEMENTS ---------- */
-        .code-demo {
-            padding: 18px;
-            background: #0f172a;
-            color: #e2e8f0;
-            border-radius: 12px;
-            overflow-x: auto;
-        }
-
-        code, kbd, samp {
-            font-family: Consolas, monospace;
-        }
-
-        kbd {
-            padding: 3px 7px;
-            border: 1px solid #94a3b8;
-            border-bottom-width: 3px;
-            border-radius: 5px;
-            background: #f8fafc;
-            color: #111827;
-        }
-
-        mark {
-            padding: 2px 5px;
-            border-radius: 4px;
-        }
-
-        /* ---------- LISTS ---------- */
-        ul, ol {
-            padding-left: 24px;
-        }
-
-        dl dt {
-            font-weight: 800;
-            color: var(--primary-dark);
-        }
-
-        dl dd {
-            margin: 0 0 12px 20px;
-            color: var(--muted);
-        }
-
-        /* ---------- TABLE ---------- */
-        .table-wrap {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 650px;
-        }
-
-        caption {
-            padding: 10px;
-            font-weight: 700;
-            color: var(--muted);
-            caption-side: bottom;
-        }
-
-        th, td {
-            border: 1px solid var(--border);
-            padding: 13px;
-            text-align: left;
-        }
-
-        thead th {
-            background: #312e81;
-            color: white;
-        }
-
-        tbody tr:nth-child(even) {
-            background: #f8fafc;
-        }
-
-        tbody tr:hover {
-            background: #eef2ff;
-        }
-
-        tfoot td {
-            font-weight: 700;
-            background: #eef2ff;
-        }
-
-        /* ---------- FORMS ---------- */
-        form {
-            display: grid;
-            gap: 18px;
-        }
-
-        fieldset {
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 20px;
-        }
-
-        legend {
-            padding: 0 9px;
-            font-weight: 800;
-            color: var(--primary-dark);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        .form-group {
-            display: grid;
-            gap: 7px;
-        }
-
-        .form-group.full {
-            grid-column: 1 / -1;
-        }
-
-        label {
-            font-weight: 700;
-        }
-
-        input, select, textarea, button {
-            font: inherit;
-        }
-
-        input:not([type="radio"]):not([type="checkbox"]):not([type="color"]):not([type="range"]),
-        select,
-        textarea {
-            width: 100%;
-            padding: 11px 13px;
-            border: 1px solid #cbd5e1;
-            border-radius: 9px;
-            outline: none;
-            background: white;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(79,70,229,.12);
-        }
-
-        .choice-row {
-            display: flex;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
-
-        .choice {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
-
-        input[type="range"] {
-            width: 100%;
-        }
-
-        output {
-            display: inline-block;
-            margin-left: 8px;
-            font-weight: 800;
-            color: var(--primary-dark);
-        }
-
-        .form-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .btn-secondary {
-            background: #475569;
-        }
-
-        /* ---------- MEDIA ---------- */
-        .media-box {
-            background: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            border-radius: 14px;
-            padding: 18px;
-            margin-top: 15px;
-        }
-
-        .media-box img {
-            display: block;
-            width: 100%;
-            max-height: 360px;
-            object-fit: cover;
-            border-radius: 12px;
-        }
-
-        video, audio {
-            display: block;
-            width: 100%;
-            margin-top: 10px;
-            border-radius: 12px;
-        }
-
-        figure {
-            margin: 0;
-        }
-
-        figcaption {
-            margin-top: 8px;
-            text-align: center;
-            color: var(--muted);
-            font-style: italic;
-        }
-
-        iframe {
-            width: 100%;
-            min-height: 320px;
-            border: 0;
-            border-radius: 12px;
-        }
-
-        /* ---------- HTML5 SPECIAL ELEMENTS ---------- */
-        details {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 14px 16px;
-            margin: 12px 0;
-        }
-
-        summary {
-            cursor: pointer;
-            font-weight: 800;
-            color: var(--primary-dark);
-        }
-
-        progress, meter {
-            width: 100%;
-            height: 22px;
-        }
-
-        .canvas-wrap {
-            overflow-x: auto;
-        }
-
-        canvas {
-            display: block;
-            width: 100%;
-            max-width: 700px;
-            height: 250px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            background: white;
-        }
-
-        dialog {
-            border: 0;
-            border-radius: 16px;
-            padding: 28px;
-            max-width: 460px;
-            width: 90%;
-            margin: auto;
-            box-shadow: 0 25px 70px rgba(0,0,0,.25);
-        }
-
-        dialog::backdrop {
-            background: rgba(15, 23, 42, .65);
-        }
-
-        .notice {
-            padding: 14px 17px;
-            border-left: 4px solid var(--secondary);
-            background: #ecfeff;
-            border-radius: 8px;
-            margin: 14px 0;
-        }
-
-        /* ---------- FOOTER ---------- */
-        footer {
-            background: #0f172a;
-            color: #cbd5e1;
-            text-align: center;
-            padding: 30px 15px;
-        }
-
-        footer address {
-            font-style: normal;
-            margin-top: 6px;
-        }
-
-        /* ---------- RESPONSIVE ---------- */
-        @media (max-width: 800px) {
-            .grid,
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-group.full {
-                grid-column: auto;
-            }
-
-            nav ul {
-                justify-content: flex-start;
-                overflow-x: auto;
-                flex-wrap: nowrap;
-            }
-
-            nav a {
-                white-space: nowrap;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .hero {
-                min-height: 380px;
-            }
-
-            section {
-                padding: 20px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Backend Development | Devansh Purohit</title>
+<meta name="description" content="Backend Development lab experiments and theory assignments by Devansh Purohit">
+<style>
+:root{--bg:#f7f8fa;--fg:#1b2430;--mute:#55606e;--card:#fff;--line:#d9dee5;--acc:#0b5c8a;--code:#eef1f5}
+@media(prefers-color-scheme:dark){:root{--bg:#12171e;--fg:#e8edf3;--mute:#a5b0bd;--card:#1b222c;--line:#323c49;--acc:#6cc0ef;--code:#10151b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+header,main,footer{max-width:1080px;margin:auto;padding:24px 20px}header{padding-top:56px}
+h1{margin:0;font-size:clamp(1.9rem,5vw,3rem);line-height:1.1}h2{margin:36px 0 14px}h3{margin:0 0 6px;font-size:1.05rem}
+p{margin:0 0 12px}.mute{color:var(--mute)}a{color:var(--acc)}nav a{margin-right:18px}
+input{width:100%;max-width:420px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:inherit;font:inherit}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px;min-width:0}.card[hidden]{display:none}
+pre{background:var(--code);padding:10px;overflow:auto;max-height:340px;font-size:.8rem;border-radius:4px}summary{cursor:pointer}
+.links{margin:14px 0 0}.links a{margin-right:16px}.live{font-weight:600}
+</style>
 </head>
-
 <body>
-
-    <!-- =========================================================
-         MEDIA SETUP
-         Replace ONLY the values below when you want your own files.
-         You can use either:
-         1. Online URL: https://example.com/image.jpg
-         2. Local file in the same folder: images/my-photo.jpg
-         ========================================================= -->
-    <script>
-        const MEDIA = {
-            image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80",
-            audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-            video: "https://www.w3schools.com/html/mov_bbb.mp4"
-        };
-    </script>
-
-    <header id="home">
-        <div class="container hero">
-            <div>
-                <span class="badge">HTML5 LABORATORY • EXPERIMENT 01</span>
-                <h1>HTML5 Elements Showcase</h1>
-                <p>
-                    A complete demonstration of semantic structure, text formatting,
-                    lists, tables, forms, multimedia, graphics and interactive HTML5 elements.
-                </p>
-
-                <div class="hero-actions">
-                    <a class="btn btn-light" href="#elements">Explore Elements</a>
-                    <a class="btn" href="#form">Try the Form</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <nav aria-label="Main navigation">
-        <div class="container">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#elements">Elements</a></li>
-                <li><a href="#lists">Lists</a></li>
-                <li><a href="#table">Table</a></li>
-                <li><a href="#form">Forms</a></li>
-                <li><a href="#media">Media</a></li>
-                <li><a href="#interactive">Interactive</a></li>
-                <li><a href="#graphics">Graphics</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <main class="container">
-
-        <!-- 1. INTRODUCTION / SEMANTIC HTML -->
-        <section id="elements">
-            <div class="section-heading">
-                <span class="tag">Semantic HTML</span>
-                <h2>1. HTML5 Text & Semantic Elements</h2>
-                <p>Common HTML5 elements used to structure meaningful and accessible content.</p>
-            </div>
-
-            <div class="grid">
-                <article class="card">
-                    <h3>Text Formatting</h3>
-                    <p>
-                        <strong>Bold text</strong>,
-                        <em>emphasized text</em>,
-                        <mark>highlighted text</mark>,
-                        <del>deleted text</del>,
-                        <ins>inserted text</ins> and
-                        <small>small text</small>.
-                    </p>
-                    <p>Water formula: H<sub>2</sub>O</p>
-                    <p>Einstein's equation: E = mc<sup>2</sup></p>
-                </article>
-
-                <article class="card">
-                    <h3>Technical Text</h3>
-                    <p>Use <code>console.log("Hello");</code> for JavaScript output.</p>
-                    <p>Keyboard shortcut: <kbd>Ctrl</kbd> + <kbd>S</kbd></p>
-                    <p>Program output: <samp>Hello, HTML5!</samp></p>
-                    <p><abbr title="HyperText Markup Language">HTML</abbr> is the standard markup language for the web.</p>
-                </article>
-
-                <article class="card">
-                    <h3>Semantic Information</h3>
-                    <p>
-                        Lab conducted on <time datetime="2026-09-22">22 September 2026</time>.
-                    </p>
-                    <p>
-                        <q>Semantic HTML gives meaning to content.</q>
-                    </p>
-                    <blockquote cite="https://developer.mozilla.org/">
-                        Semantic elements help describe the purpose of different parts of a webpage.
-                    </blockquote>
-                </article>
-            </div>
-
-            <div class="code-demo" style="margin-top:18px;">
-                &lt;article&gt; &nbsp; &lt;header&gt; &nbsp; &lt;main&gt; &nbsp;
-                &lt;section&gt; &nbsp; &lt;aside&gt; &nbsp; &lt;footer&gt;
-            </div>
-        </section>
-
-        <!-- 2. LISTS -->
-        <section id="lists">
-            <div class="section-heading">
-                <span class="tag">Lists</span>
-                <h2>2. Ordered, Unordered & Description Lists</h2>
-            </div>
-
-            <div class="grid">
-                <article class="card">
-                    <h3>Unordered List</h3>
-                    <ul>
-                        <li>HTML5</li>
-                        <li>CSS3</li>
-                        <li>JavaScript</li>
-                        <li>Responsive Design</li>
-                    </ul>
-                </article>
-
-                <article class="card">
-                    <h3>Ordered List</h3>
-                    <ol>
-                        <li>Create HTML structure</li>
-                        <li>Add CSS styling</li>
-                        <li>Add JavaScript</li>
-                        <li>Test in browser</li>
-                    </ol>
-                </article>
-
-                <article class="card">
-                    <h3>Description List</h3>
-                    <dl>
-                        <dt>HTML</dt>
-                        <dd>Structures webpage content.</dd>
-                        <dt>CSS</dt>
-                        <dd>Controls presentation and layout.</dd>
-                        <dt>JavaScript</dt>
-                        <dd>Adds behaviour and interactivity.</dd>
-                    </dl>
-                </article>
-            </div>
-        </section>
-
-        <!-- 3. TABLE -->
-        <section id="table">
-            <div class="section-heading">
-                <span class="tag">Table</span>
-                <h2>3. HTML5 Table Elements</h2>
-                <p>Demonstration of caption, thead, tbody, tfoot, rowspan and colspan.</p>
-            </div>
-
-            <div class="table-wrap">
-                <table>
-                    <caption>Table 1: Web Technologies and Their Uses</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Technology</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Primary Use</th>
-                            <th scope="col">Level</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td>HTML5</td>
-                            <td>Markup</td>
-                            <td>Page structure</td>
-                            <td>Beginner</td>
-                        </tr>
-                        <tr>
-                            <td>CSS3</td>
-                            <td>Style</td>
-                            <td>Design & layout</td>
-                            <td>Beginner</td>
-                        </tr>
-                        <tr>
-                            <td>JavaScript</td>
-                            <td>Programming</td>
-                            <td>Interactivity</td>
-                            <td>Intermediate</td>
-                        </tr>
-                        <tr>
-                            <td>Node.js</td>
-                            <td>Runtime</td>
-                            <td>Server-side applications</td>
-                            <td>Intermediate</td>
-                        </tr>
-                    </tbody>
-
-                    <tfoot>
-                        <tr>
-                            <td colspan="4">HTML5 supports structured and meaningful tabular data.</td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </section>
-
-        <!-- 4. FORM -->
-        <section id="form">
-            <div class="section-heading">
-                <span class="tag">Forms</span>
-                <h2>4. HTML5 Form Input Types</h2>
-                <p>This section demonstrates common HTML5 form controls and validation attributes.</p>
-            </div>
-
-            <form id="studentForm">
-
-                <fieldset>
-                    <legend>Personal Information</legend>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name"
-                                   placeholder="Enter your name" required autocomplete="name">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email"
-                                   placeholder="name@example.com" required autocomplete="email">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone"
-                                   placeholder="+91 XXXXX XXXXX" pattern="[0-9+\-\s]{10,15}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="age">Age</label>
-                            <input type="number" id="age" name="age" min="16" max="100">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="dob">Date of Birth</label>
-                            <input type="date" id="dob" name="dob">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="month">Preferred Month</label>
-                            <input type="month" id="month" name="month">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="website">Portfolio URL</label>
-                            <input type="url" id="website" name="website"
-                                   placeholder="https://example.com">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="search">Search</label>
-                            <input type="search" id="search" name="search"
-                                   placeholder="Search something...">
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Course Preferences</legend>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="course">Choose a Course</label>
-                            <select id="course" name="course">
-                                <optgroup label="Frontend">
-                                    <option value="html">HTML5</option>
-                                    <option value="css">CSS3</option>
-                                    <option value="js">JavaScript</option>
-                                </optgroup>
-                                <optgroup label="Backend">
-                                    <option value="node">Node.js</option>
-                                    <option value="python">Python</option>
-                                </optgroup>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="tool">Favourite Tool</label>
-                            <input list="tools" id="tool" name="tool"
-                                   placeholder="Start typing...">
-                            <datalist id="tools">
-                                <option value="VS Code">
-                                <option value="Git">
-                                <option value="GitHub">
-                                <option value="Docker">
-                                <option value="Chrome DevTools">
-                            </datalist>
-                        </div>
-
-                        <div class="form-group full">
-                            <label>Experience Level</label>
-                            <div class="choice-row">
-                                <label class="choice">
-                                    <input type="radio" name="level" value="beginner" checked>
-                                    Beginner
-                                </label>
-                                <label class="choice">
-                                    <input type="radio" name="level" value="intermediate">
-                                    Intermediate
-                                </label>
-                                <label class="choice">
-                                    <input type="radio" name="level" value="advanced">
-                                    Advanced
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group full">
-                            <label>Topics of Interest</label>
-                            <div class="choice-row">
-                                <label class="choice">
-                                    <input type="checkbox" name="topic" value="html"> HTML
-                                </label>
-                                <label class="choice">
-                                    <input type="checkbox" name="topic" value="css"> CSS
-                                </label>
-                                <label class="choice">
-                                    <input type="checkbox" name="topic" value="js"> JavaScript
-                                </label>
-                                <label class="choice">
-                                    <input type="checkbox" name="topic" value="backend"> Backend
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group full">
-                            <label for="skill">HTML Skill Level</label>
-                            <input type="range" id="skill" name="skill" min="0" max="100" value="60">
-                            <output id="skillOutput" for="skill">60%</output>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="favColor">Favourite Color</label>
-                            <input type="color" id="favColor" name="favColor" value="#4f46e5">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="resume">Upload File</label>
-                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx,.txt">
-                        </div>
-
-                        <div class="form-group full">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5"
-                                      placeholder="Write your learning goals..."></textarea>
-                        </div>
-                    </div>
-                </fieldset>
-
-                <div class="form-buttons">
-                    <button class="btn" type="submit">Submit Form</button>
-                    <button class="btn btn-secondary" type="reset">Reset</button>
-                </div>
-            </form>
-
-            <div id="formMessage" class="notice" hidden></div>
-        </section>
-
-        <!-- 5. MULTIMEDIA -->
-        <section id="media">
-            <div class="section-heading">
-                <span class="tag">Multimedia</span>
-                <h2>5. Images, Audio, Video & Embedded Content</h2>
-                <p>HTML5 provides native multimedia elements without requiring browser plugins.</p>
-            </div>
-
-            <div class="grid">
-
-                <article class="card">
-                    <h3>Image & Picture</h3>
-
-                    <picture>
-                        <!-- You can replace these URLs with your own images. -->
-                        <source id="desktopImage" media="(min-width: 800px)" srcset="">
-                        <img id="mainImage" src="" alt="HTML5 laboratory demonstration image">
-                    </picture>
-
-                    <figure>
-                        <figcaption>Figure 1: Responsive HTML5 image using picture and img.</figcaption>
-                    </figure>
-                </article>
-
-                <article class="card">
-                    <h3>Audio</h3>
-                    <p>Replace the audio URL in the MEDIA object near the top of this file.</p>
-
-                    <audio id="labAudio" controls preload="metadata">
-                        Your browser does not support the HTML5 audio element.
-                    </audio>
-
-                    <small>Supported formats commonly include MP3, WAV and OGG.</small>
-                </article>
-
-                <article class="card">
-                    <h3>Video</h3>
-                    <p>Replace the video URL in the MEDIA object near the top of this file.</p>
-
-                    <video id="labVideo" controls preload="metadata" poster="">
-                        Your browser does not support the HTML5 video element.
-                    </video>
-
-                    <small>Common web video formats include MP4, WebM and OGG.</small>
-                </article>
-            </div>
-
-            <div class="media-box">
-                <h3>Embedded Web Content using iframe</h3>
-                <iframe
-                    src="https://www.example.com"
-                    title="Example embedded webpage"
-                    loading="lazy">
-                </iframe>
-                <p style="margin-top:8px;">
-                    <small>
-                        Some websites block iframe embedding. If this frame is blank,
-                        that is controlled by the external website's security policy.
-                    </small>
-                </p>
-            </div>
-        </section>
-
-        <!-- 6. INTERACTIVE -->
-        <section id="interactive">
-            <div class="section-heading">
-                <span class="tag">Interactive HTML5</span>
-                <h2>6. Details, Dialog, Progress, Meter & Datalist</h2>
-            </div>
-
-            <details>
-                <summary>What is HTML5?</summary>
-                <p>
-                    HTML5 is the modern version of HTML used to structure content
-                    and provide native support for multimedia and interactive elements.
-                </p>
-            </details>
-
-            <details>
-                <summary>Why use semantic elements?</summary>
-                <p>
-                    Elements such as header, nav, main, article, section, aside and footer
-                    make the structure of a document clearer to browsers, search engines
-                    and assistive technologies.
-                </p>
-            </details>
-
-            <div class="grid" style="margin-top:20px;">
-                <div class="card">
-                    <h3>Progress</h3>
-                    <label for="deployment">Experiment Completion</label>
-                    <progress id="deployment" value="75" max="100">75%</progress>
-                </div>
-
-                <div class="card">
-                    <h3>Meter</h3>
-                    <label for="systemLoad">System Load</label>
-                    <meter id="systemLoad" min="0" max="100" low="40" high="80" optimum="20" value="55">
-                        55%
-                    </meter>
-                </div>
-
-                <div class="card">
-                    <h3>Dialog</h3>
-                    <p>Open a native HTML dialog box.</p>
-                    <button class="btn" id="openDialog" type="button">Open Dialog</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. GRAPHICS -->
-        <section id="graphics">
-            <div class="section-heading">
-                <span class="tag">Graphics</span>
-                <h2>7. Canvas & SVG</h2>
-                <p>Canvas is script-based drawing; SVG is vector-based markup.</p>
-            </div>
-
-            <div class="grid">
-                <article class="card">
-                    <h3>Canvas</h3>
-                    <div class="canvas-wrap">
-                        <canvas id="myCanvas" width="700" height="250">
-                            Your browser does not support canvas.
-                        </canvas>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <h3>SVG</h3>
-                    <svg viewBox="0 0 400 220" width="100%" role="img"
-                         aria-label="Simple SVG illustration">
-                        <rect x="10" y="10" width="380" height="200" rx="20"
-                              fill="#eef2ff" stroke="#4f46e5" stroke-width="4"/>
-                        <circle cx="115" cy="105" r="55"
-                                fill="#06b6d4"/>
-                        <rect x="205" y="55" width="110" height="100" rx="15"
-                              fill="#f59e0b"/>
-                        <text x="200" y="190" font-size="22"
-                              fill="#172033">HTML5 SVG</text>
-                    </svg>
-                </article>
-            </div>
-        </section>
-
-        <!-- 8. ASIDE / ADDRESS / SUMMARY -->
-        <section>
-            <aside class="notice">
-                <strong>Note:</strong>
-                This experiment is a frontend HTML5 demonstration.
-                The form uses JavaScript only for demonstration and does not store
-                submitted information in a database.
-            </aside>
-
-            <h2>Experiment Summary</h2>
-            <p>
-                This webpage demonstrates semantic HTML5 structure, text formatting,
-                lists, tables, form controls, multimedia, iframe, details, dialog,
-                progress, meter, canvas and SVG.
-            </p>
-        </section>
-
-    </main>
-
-    <dialog id="labDialog">
-        <h2>HTML5 Dialog</h2>
-        <p style="margin:12px 0 20px;">
-            This popup is created using the native HTML5
-            <code>&lt;dialog&gt;</code> element.
-        </p>
-        <button class="btn" id="closeDialog" type="button">Close</button>
-    </dialog>
-
-    <footer>
-        <p><strong>Experiment 1 — HTML5 Elements Showcase</strong></p>
-        <p>B.Tech Computer Science • Web Technologies Laboratory</p>
-        <address>Created for academic demonstration</address>
-        <p style="margin-top:8px;">&copy; 2026 HTML5 Laboratory</p>
-    </footer>
-
-    <script>
-        /* =========================================================
-           MEDIA LOADING
-           Do not search through the whole HTML for URLs.
-           Change only the MEDIA object at the top.
-           ========================================================= */
-        document.getElementById("mainImage").src = MEDIA.image;
-        document.getElementById("desktopImage").srcset = MEDIA.image;
-        document.getElementById("labAudio").src = MEDIA.audio;
-        document.getElementById("labVideo").src = MEDIA.video;
-
-        /* ---------- RANGE OUTPUT ---------- */
-        const skill = document.getElementById("skill");
-        const skillOutput = document.getElementById("skillOutput");
-
-        skill.addEventListener("input", () => {
-            skillOutput.value = skill.value + "%";
-            skillOutput.textContent = skill.value + "%";
-        });
-
-        /* ---------- FORM DEMO ---------- */
-        const studentForm = document.getElementById("studentForm");
-        const formMessage = document.getElementById("formMessage");
-
-        studentForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-
-            if (!studentForm.checkValidity()) {
-                studentForm.reportValidity();
-                return;
-            }
-
-            formMessage.hidden = false;
-            formMessage.textContent =
-                "Form submitted successfully! This is a frontend demonstration; no data was sent to a server.";
-
-            studentForm.reset();
-            skillOutput.value = "60%";
-            skillOutput.textContent = "60%";
-        });
-
-        studentForm.addEventListener("reset", () => {
-            setTimeout(() => {
-                formMessage.hidden = true;
-                skillOutput.value = "60%";
-                skillOutput.textContent = "60%";
-            }, 0);
-        });
-
-        /* ---------- DIALOG ---------- */
-        const dialog = document.getElementById("labDialog");
-        const openDialog = document.getElementById("openDialog");
-        const closeDialog = document.getElementById("closeDialog");
-
-        openDialog.addEventListener("click", () => dialog.showModal());
-        closeDialog.addEventListener("click", () => dialog.close());
-
-        /* ---------- CANVAS ---------- */
-        const canvas = document.getElementById("myCanvas");
-        const ctx = canvas.getContext("2d");
-
-        ctx.fillStyle = "#4f46e5";
-        ctx.fillRect(30, 35, 150, 90);
-
-        ctx.fillStyle = "#06b6d4";
-        ctx.beginPath();
-        ctx.arc(280, 80, 45, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.fillStyle = "#172033";
-        ctx.font = "bold 24px Arial";
-        ctx.fillText("HTML5 Canvas", 30, 175);
-
-        ctx.font = "16px Arial";
-        ctx.fillText("Graphics drawn with JavaScript", 30, 205);
-
-        /* ---------- ACTIVE NAVIGATION ---------- */
-        const sections = document.querySelectorAll("main section[id]");
-        const links = document.querySelectorAll("nav a");
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        links.forEach((link) => {
-                            link.classList.toggle(
-                                "active",
-                                link.getAttribute("href") === "#" + entry.target.id
-                            );
-                        });
-                    }
-                });
-            },
-            { rootMargin: "-30% 0px -60% 0px" }
-        );
-
-        sections.forEach((section) => observer.observe(section));
-
-        console.log("Experiment 1: HTML5 Elements Showcase loaded successfully.");
-    </script>
-
+<header>
+<p class="mute">CSFS3008P, Semester 5</p>
+<h1>Backend Development</h1>
+<p>Lab experiments and theory work by Devansh Purohit (SAP ID 590017030).</p>
+<nav><a href="#lab">Lab</a><a href="#theory">Theory</a><a href="https://github.com/Devanshpurohit17/BackendLab">GitHub repository</a><a href="https://github.com/Devanshpurohit17">GitHub profile</a></nav>
+</header>
+<main>
+<input id="search" type="search" placeholder="Search, for example MongoDB" aria-label="Search experiments">
+<h2 id="lab">Lab experiments</h2><div class="grid"><article class="card" data-search="experiment 1: html5 elements build pages with html5 elements, plus five practice tasks: blog, form, table, gallery and interactive elements."><h3>Experiment 1: HTML5 elements</h3><p>Build pages with HTML5 elements, plus five practice tasks: blog, form, table, gallery and interactive elements.</p><details><summary>How to run</summary><pre>Open index.html in a browser.</pre></details><p class="links"><a class="live" href="lab/Exp%201/index.html">Open live page</a><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Exp%201">View code</a></p></article><article class="card" data-search="experiment 5: javascript arrays, objects and functions use arrays, objects and functions, and build a small library manager."><h3>Experiment 5: JavaScript arrays, objects and functions</h3><p>Use arrays, objects and functions, and build a small library manager.</p><details><summary>How to run</summary><pre>node script.js
+node script2.js
+node library.js</pre></details><details><summary>Show output</summary><pre>Fruits: [ &#x27;Apple&#x27;, &#x27;Banana&#x27;, &#x27;Mango&#x27; ]
+After push: [ &#x27;Apple&#x27;, &#x27;Banana&#x27;, &#x27;Mango&#x27;, &#x27;Orange&#x27; ]
+Student: {
+  name: &#x27;Devansh Purohit&#x27;,
+  sapId: 590017030,
+  course: &#x27;Backend Development&#x27;
+}
+Name: Devansh Purohit
+Hello, Devansh Purohit! Welcome to Backend Development Lab.
+Upper case: BACKEND DEVELOPMENT
+Lower case: backend development
+Split: [ &#x27;Backend&#x27;, &#x27;Development&#x27; ]
+First: Node
+Items: [ &#x27;Node.js&#x27;, &#x27;Express&#x27;, &#x27;MongoDB&#x27; ]
+Lengths: [ 7, 7, 7 ]
+User: { name: &#x27;Devansh&#x27;, role: &#x27;Senior Dev&#x27;, semester: 5 }
+Keys: [ &#x27;name&#x27;, &#x27;role&#x27;, &#x27;semester&#x27; ]
+Library: [
+  { title: &#x27;Clean Code&#x27;, author: &#x27;Robert C. Martin&#x27; },
+  { title: &#x27;Eloquent JavaScript&#x27;, author: &#x27;Marijn Haverbeke&#x27; }
+]
+Find &#x27;clean code&#x27;: { title: &#x27;Clean Code&#x27;, author: &#x27;Robert C. Martin&#x27; }
+Find &#x27;Unknown&#x27;: undefined</pre></details><p class="links"><a class="live" href="lab/Experiment%205/index.html">Open live page</a><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment%205">View code</a></p></article><article class="card" data-search="experiment 7: es6 and dom use es6 features and change a page through the dom."><h3>Experiment 7: ES6 and DOM</h3><p>Use ES6 features and change a page through the DOM.</p><details><summary>How to run</summary><pre>Serve this folder with Live Server (ES modules do not load from file://).</pre></details><p class="links"><a class="live" href="lab/Experiment07_DOM/index.html">Open live page</a><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment07_DOM">View code</a></p></article><article class="card" data-search="experiment 8: event handling build a to-do list using events, delegation and bubbling."><h3>Experiment 8: Event handling</h3><p>Build a to-do list using events, delegation and bubbling.</p><details><summary>How to run</summary><pre>Open index.html in a browser.</pre></details><p class="links"><a class="live" href="lab/Experiment08/index.html">Open live page</a><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment08">View code</a></p></article><article class="card" data-search="experiment 12: node, express and ejs create routes, a calculator api, student management, and ejs pages and forms."><h3>Experiment 12: Node, Express and EJS</h3><p>Create routes, a calculator API, student management, and EJS pages and forms.</p><details><summary>How to run</summary><pre>npm install
+npm start</pre></details><details><summary>Show output</summary><pre>GET / -&gt; 200 (HTML, 485 chars)
+GET /text -&gt; 200 Devansh Purohit, 590017030, CSE
+GET /html -&gt; 200 (HTML, 46 chars)
+GET /json -&gt; 200 {&quot;name&quot;:&quot;Devansh Purohit&quot;,&quot;rollNumber&quot;:&quot;590017030&quot;,&quot;branch&quot;:&quot;CSE&quot;}
+GET /calculate?op=add&amp;a=5&amp;b=3 -&gt; 200 {&quot;op&quot;:&quot;add&quot;,&quot;a&quot;:5,&quot;b&quot;:3,&quot;result&quot;:8}
+GET /calculate?op=power&amp;a=2&amp;b=5 -&gt; 200 {&quot;op&quot;:&quot;power&quot;,&quot;a&quot;:2,&quot;b&quot;:5,&quot;result&quot;:32}
+GET /calculate?op=modulus&amp;a=7&amp;b=4 -&gt; 200 {&quot;op&quot;:&quot;modulus&quot;,&quot;a&quot;:7,&quot;b&quot;:4,&quot;result&quot;:3}
+GET /calculate?op=divide&amp;a=1&amp;b=0 -&gt; 400 {&quot;error&quot;:&quot;Cannot divide by zero&quot;}
+GET /calculate?op=toString&amp;a=1&amp;b=2 -&gt; 400 {&quot;error&quot;:&quot;Unknown operation&quot;}
+GET /students -&gt; 200 [{&quot;id&quot;:1,&quot;name&quot;:&quot;Aarav&quot;,&quot;course&quot;:&quot;CSE&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;Diya&quot;,&quot;course&quot;:&quot;IT&quot;}]
+GET /students/9 -&gt; 404 {&quot;error&quot;:&quot;Student not found&quot;}
+POST /students/add -&gt; 201 {&quot;id&quot;:3,&quot;name&quot;:&quot;Kabir&quot;,&quot;course&quot;:&quot;ME&quot;}
+POST /students/add -&gt; 400 {&quot;error&quot;:&quot;name and course are required&quot;}
+GET /timetable -&gt; 200 (HTML, 626 chars)
+POST /register -&gt; 200 (HTML, 281 chars)
+POST /register -&gt; 400 (HTML, 575 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Exp%2012">View code</a></p></article><article class="card" data-search="experiment 12b: state management build a login system and a to-do list using sessions and cookies."><h3>Experiment 12B: State management</h3><p>Build a login system and a to-do list using sessions and cookies.</p><details><summary>How to run</summary><pre>npm install
+npm run login
+# or
+npm run todo</pre></details><details><summary>Show output</summary><pre>GET /dashboard -&gt; 302 Found. Redirecting to /login
+POST /register -&gt; 302 Found. Redirecting to /login
+POST /register -&gt; 400 (HTML, 491 chars)
+POST /login -&gt; 401 (HTML, 484 chars)
+POST /login -&gt; 401 (HTML, 484 chars)
+POST /login -&gt; 302 Found. Redirecting to /dashboard
+GET /dashboard -&gt; 200 (HTML, 260 chars)
+POST /logout -&gt; 302 Found. Redirecting to /login
+GET /dashboard -&gt; 302 Found. Redirecting to /login
+POST /add -&gt; 302 Found. Redirecting to /
+GET / -&gt; 200 (HTML, 575 chars)
+POST /theme -&gt; 302 Found. Redirecting to /
+GET / -&gt; 200 (HTML, 574 chars)
+POST /delete/0 -&gt; 302 Found. Redirecting to /
+GET / -&gt; 200 (HTML, 435 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Exp%2012B">View code</a></p></article><article class="card" data-search="experiment 13a: mongodb and mongoose register and log in users stored in mongodb. passwords are hashed with bcrypt."><h3>Experiment 13A: MongoDB and Mongoose</h3><p>Register and log in users stored in MongoDB. Passwords are hashed with bcrypt.</p><details><summary>How to run</summary><pre># MongoDB must be running
+npm install
+npm start</pre></details><details><summary>Show output</summary><pre>GET / -&gt; 200 (HTML, 732 chars)
+POST /signup -&gt; 201 (HTML, 183 chars)
+POST /signup -&gt; 409 (HTML, 182 chars)
+POST /signup -&gt; 400 (HTML, 173 chars)
+POST /login -&gt; 200 (HTML, 195 chars)
+POST /login -&gt; 401 (HTML, 178 chars)
+POST /login -&gt; 401 (HTML, 178 chars)
+GET /users -&gt; 200 (HTML, 256 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment13A">View code</a></p></article><article class="card" data-search="experiment 15: django task tracker build a django to-do app with templates, static files and admin."><h3>Experiment 15: Django Task Tracker</h3><p>Build a Django to-do app with templates, static files and admin.</p><details><summary>How to run</summary><pre>pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+# tests
+python manage.py test</pre></details><details><summary>Show output</summary><pre> identified no issues (0 silenced).
+Creating test database for alias &#x27;default&#x27; (&#x27;file:memorydb_default?mode=memory&amp;cache=shared&#x27;)...
+
+test_add (todo.tests.TaskTests.test_add) ... ok
+test_blank_title_is_rejected (todo.tests.TaskTests.test_blank_title_is_rejected) ... ok
+test_csrf_is_required (todo.tests.TaskTests.test_csrf_is_required) ... ok
+test_empty_message (todo.tests.TaskTests.test_empty_message) ... ok
+test_get_cannot_delete (todo.tests.TaskTests.test_get_cannot_delete) ... ok
+test_toggle_and_delete (todo.tests.TaskTests.test_toggle_and_delete) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.034s
+
+OK
+Destroying test database for alias &#x27;default&#x27; (&#x27;file:memorydb_default?mode=memory&amp;cache=shared&#x27;)...</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment15_Django_Todo_App">View code</a></p></article><article class="card" data-search="lab exam 01 a: my notes (re-implementation) add, view, filter and delete notes using express, ejs and mongodb. this is a later re-implementation for practice, not the code submitted in the exam."><h3>Lab Exam 01 A: My Notes (re-implementation)</h3><p>Add, view, filter and delete notes using Express, EJS and MongoDB. This is a later re-implementation for practice, not the code submitted in the exam.</p><details><summary>How to run</summary><pre># MongoDB must be running
+npm install
+npm start</pre></details><details><summary>Show output</summary><pre>GET /notes -&gt; 200 (HTML, 446 chars)
+POST /notes -&gt; 400 (HTML, 554 chars)
+POST /notes -&gt; 302 Found. Redirecting to /notes
+GET /notes?category=Study -&gt; 200 (HTML, 714 chars)
+GET /notes?category=Nope -&gt; 200 (HTML, 485 chars)
+POST /notes/bad/delete -&gt; 400 (HTML, 15 chars)
+POST /notes/6b054ec0d8c41d6abc806376/delete -&gt; 302 Found. Redirecting to /notes
+GET /notes -&gt; 200 (HTML, 446 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/BackendLabExam">View code</a></p></article></div>
+<h2 id="theory">Theory assignments and lectures</h2><div class="grid"><article class="card" data-search="assignment 1: notes app create, edit, delete and search notes saved in localstorage."><h3>Assignment 1: Notes App</h3><p>Create, edit, delete and search notes saved in localStorage.</p><details><summary>How to run</summary><pre>Open index.html in a browser.</pre></details><p class="links"><a class="live" href="theory/Assignment/NotesApp/index.html">Open live page</a><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Assignment/NotesApp">View code</a></p></article><article class="card" data-search="assignment 2: postgresql jsonb use jsonb in postgresql and compare with mongodb."><h3>Assignment 2: PostgreSQL JSONB</h3><p>Use JSONB in PostgreSQL and compare with MongoDB.</p><details><summary>How to run</summary><pre>psql -d your_database -f products.sql
+npm install
+npm start</pre></details><details><summary>Show output</summary><pre># PostgreSQL
+(run on PGlite, PostgreSQL compiled to WebAssembly)
+
+{&quot;name&quot;:&quot;Eloquent JavaScript&quot;}
+
+{&quot;name&quot;:&quot;ProBook 14&quot;,&quot;cpu&quot;:&quot;Ryzen 7&quot;}
+
+{&quot;name&quot;:&quot;Wireless Mouse&quot;}
+
+{&quot;name&quot;:&quot;Wireless Mouse&quot;}
+
+{&quot;json_value&quot;:&quot;Ryzen 7&quot;,&quot;text_value&quot;:&quot;Ryzen 7&quot;,&quot;has_cpu&quot;:true}
+
+{&quot;name&quot;:&quot;Wireless Mouse&quot;,&quot;attributes&quot;:{&quot;color&quot;:&quot;black&quot;,&quot;wireless&quot;:true,&quot;discount_pct&quot;:10}}
+
+Seq Scan on products  (cost=0.00..14.27 rows=1 width=218) (actual time=0.033..0.051 rows=1.00 loops=1)
+  Filter: (((category)::text = &#x27;laptop&#x27;::text) AND (((attributes -&gt;&gt; &#x27;ram_gb&#x27;::text))::integer &gt;= 16))
+  Rows Removed by Filter: 4
+  Buffers: shared hit=1
+Planning Time: 0.080 ms
+Execution Time: 0.162 ms
+
+Seq Scan on products  (cost=0.00..12.38 rows=2 width=218) (actual time=0.011..0.013 rows=1.00 loops=1)
+  Filter: (attributes @&gt; &#x27;{&quot;wireless&quot;: true}&#x27;::jsonb)
+  Rows Removed by Filter: 4
+  Buffers: shared hit=1
+Planning Time: 0.039 ms
+Execution Time: 0.026 ms
+
+Seq Scan on products  (cost=0.00..1.11 rows=1 width=13) (actual time=0.011..0.013 rows=1.00 loops=1)
+  Filter: (((category)::text = &#x27;laptop&#x27;::text) AND (((attributes -&gt;&gt; &#x27;ram_gb&#x27;::text))::integer &gt;= 16))
+  Rows Removed by Filter: 4
+  Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=21
+Planning Time: 0.159 ms
+Execution Time: 0.027 ms
+
+Seq Scan on products  (cost=0.00..1.06 rows=1 width=13) (actual time=0.013..0.014 rows=1.00 loops=1)
+  Filter: (attributes @&gt; &#x27;{&quot;wireless&quot;: true}&#x27;::jsonb)
+  Rows Removed by Filter: 4
+  Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=10
+Planning Time: 0.369 ms
+Execution Time: 0.028 ms
+
+Bitmap Heap Scan on products  (cost=12.93..16.94 rows=1 width=13) (actual time=0.615..0.618 rows=1.00 loops=1)
+  Recheck Cond: (attributes @&gt; &#x27;{&quot;wireless&quot;: true}&#x27;::jsonb)
+  Heap Blocks: exact=1
+  Buffers: shared hit=4
+  -&gt;  Bitmap Index Scan on idx_products_attributes  (cost=0.00..12.93 rows=1 width=0) (actual time=0.594..0.595 rows=1.00 loops=1)
+        Index Cond: (attributes @&gt; &#x27;{&quot;wireless&quot;: true}&#x27;::jsonb)
+        Index Searches: 1
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=1
+Planning Time: 0.050 ms
+Execution Time: 0.745 ms
+
+# MongoDB
+Books over 470 pages: [ &#x27;Eloquent JavaScript&#x27; ]
+Laptops 16GB+: [ &#x27;ProBook 14&#x27; ]
+Black accessories: [ &#x27;Wireless Mouse&#x27; ]
+Wireless: [ &#x27;Wireless Mouse&#x27; ]</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Assignment/Assignment2">View code</a></p></article><article class="card" data-search="lecture 3: express and flask servers create first servers in express and flask."><h3>Lecture 3: Express and Flask servers</h3><p>Create first servers in Express and Flask.</p><details><summary>How to run</summary><pre>cd express-demo
+npm install
+npm start
+# Flask
+cd flask-demo
+pip install -r requirements.txt
+python app.py</pre></details><details><summary>Show output</summary><pre>GET / -&gt; 200 (HTML, 37 chars)
+GET /students -&gt; 200 [{&quot;id&quot;:1,&quot;name&quot;:&quot;Aarav&quot;,&quot;branch&quot;:&quot;CSE&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;Diya&quot;,&quot;branch&quot;:&quot;ECE&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;Rohan&quot;,&quot;branch&quot;:&quot;CSE&quot;}]
+GET /students/2 -&gt; 200 {&quot;id&quot;:2,&quot;name&quot;:&quot;Diya&quot;,&quot;branch&quot;:&quot;ECE&quot;}
+GET /students/99 -&gt; 404 {&quot;error&quot;:&quot;Student not found&quot;}
+GET /students/branch/cse -&gt; 200 [{&quot;id&quot;:1,&quot;name&quot;:&quot;Aarav&quot;,&quot;branch&quot;:&quot;CSE&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;Rohan&quot;,&quot;branch&quot;:&quot;CSE&quot;}]
+GET /html -&gt; 200 (HTML, 55 chars)
+GET /page -&gt; 200 (HTML, 206 chars)
+GET /students -&gt; 200 [{&quot;branch&quot;:&quot;CSE&quot;,&quot;id&quot;:1,&quot;name&quot;:&quot;Aarav&quot;},{&quot;branch&quot;:&quot;ECE&quot;,&quot;id&quot;:2,&quot;name&quot;:&quot;Diya&quot;}]
+GET /students/9 -&gt; 404 {&quot;error&quot;:&quot;Student not found&quot;}
+POST /students -&gt; 201 {&quot;branch&quot;:&quot;IT&quot;,&quot;id&quot;:3,&quot;name&quot;:&quot;Rohan&quot;}
+POST /students -&gt; 400 {&quot;error&quot;:&quot;name and branch are required&quot;}
+GET /students/3 -&gt; 200 {&quot;branch&quot;:&quot;IT&quot;,&quot;id&quot;:3,&quot;name&quot;:&quot;Rohan&quot;}</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%203">View code</a></p></article><article class="card" data-search="lecture 4: http requests send requests with curl and fetch to the lecture 3 server."><h3>Lecture 4: HTTP requests</h3><p>Send requests with curl and fetch to the lecture 3 server.</p><details><summary>How to run</summary><pre>sh requests.sh
+node fetch.js</pre></details><details><summary>Show output</summary><pre>[
+  { id: 1, name: &#x27;Aarav&#x27;, branch: &#x27;CSE&#x27; },
+  { id: 3, name: &#x27;Rohan&#x27;, branch: &#x27;CSE&#x27; }
+]
+1. All students
+[{&quot;id&quot;:1,&quot;name&quot;:&quot;Aarav&quot;,&quot;branch&quot;:&quot;CSE&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;Diya&quot;,&quot;branch&quot;:&quot;ECE&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;Rohan&quot;,&quot;branch&quot;:&quot;CSE&quot;}]
+2. Student 3
+{&quot;id&quot;:3,&quot;name&quot;:&quot;Rohan&quot;,&quot;branch&quot;:&quot;CSE&quot;}
+3. Unknown student
+{&quot;error&quot;:&quot;Student not found&quot;} status=404
+4. Response headers
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 117
+ETag: W/&quot;75-o9qnxMtTo+sd/Q4MjI4EKLUrdzo&quot;
+Date: Tue, 24 Nov 2026 08:46:10 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%204">View code</a></p></article><article class="card" data-search="lecture 5: rest api with fastapi create a course crud api with a department filter."><h3>Lecture 5: REST API with FastAPI</h3><p>Create a course CRUD API with a department filter.</p><details><summary>How to run</summary><pre>pip install -r requirements.txt
+uvicorn main:app --reload</pre></details><details><summary>Show output</summary><pre>GET /courses -&gt; 200 [{&quot;title&quot;:&quot;Backend Development&quot;,&quot;credits&quot;:4,&quot;department&quot;:&quot;CSE&quot;,&quot;id&quot;:1},{&quot;title&quot;:&quot;Digital Electronics&quot;,&quot;credits&quot;:3,&quot;department&quot;:&quot;ECE&quot;,&quot;id&quot;:2}]
+GET /courses?department=CSE -&gt; 200 [{&quot;title&quot;:&quot;Backend Development&quot;,&quot;credits&quot;:4,&quot;department&quot;:&quot;CSE&quot;,&quot;id&quot;:1}]
+POST /courses -&gt; 201 {&quot;title&quot;:&quot;DBMS&quot;,&quot;credits&quot;:4,&quot;department&quot;:&quot;CSE&quot;,&quot;id&quot;:3}
+PUT /courses/3 -&gt; 200 {&quot;title&quot;:&quot;DBMS&quot;,&quot;credits&quot;:3,&quot;department&quot;:&quot;IT&quot;,&quot;id&quot;:3}
+DELETE /courses/3 -&gt; 204
+GET /courses/3 -&gt; 404 {&quot;detail&quot;:&quot;Course not found&quot;}
+POST /courses -&gt; 422 {&quot;detail&quot;:[{&quot;type&quot;:&quot;less_than_equal&quot;,&quot;loc&quot;:[&quot;body&quot;,&quot;credits&quot;],&quot;msg&quot;:&quot;Input should be less than or equal to 6&quot;,&quot;input&quot;:99,&quot;ctx&quot;:{&quot;le&quot;:6}}]}
+GET /docs -&gt; 200 (HTML, 1009 chars)
+GET /redoc -&gt; 200 (HTML, 891 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%205">View code</a></p></article><article class="card" data-search="lecture 6: sessions, cookies and query strings compare three ways to keep state."><h3>Lecture 6: Sessions, cookies and query strings</h3><p>Compare three ways to keep state.</p><details><summary>How to run</summary><pre>npm install
+npm start</pre></details><details><summary>Show output</summary><pre>GET /visits -&gt; 200 {&quot;visits&quot;:1}
+GET /visits -&gt; 200 {&quot;visits&quot;:2}
+GET /profile -&gt; 401 {&quot;error&quot;:&quot;Please log in&quot;}
+POST /login -&gt; 200 {&quot;message&quot;:&quot;Logged in&quot;}
+GET /profile -&gt; 200 {&quot;username&quot;:&quot;devansh&quot;}
+POST /logout -&gt; 200 {&quot;message&quot;:&quot;Logged out&quot;}
+GET /profile -&gt; 401 {&quot;error&quot;:&quot;Please log in&quot;}
+GET /set-cookie -&gt; 200 {&quot;message&quot;:&quot;Cookie set&quot;}
+GET /get-cookie -&gt; 200 {&quot;language&quot;:&quot;en&quot;}
+GET /welcome?user=Devansh&amp;role=student -&gt; 200 {&quot;message&quot;:&quot;Welcome Devansh, your role is student&quot;}</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%206">View code</a></p></article><article class="card" data-search="lecture 7: web storage and json save objects in localstorage and sessionstorage."><h3>Lecture 7: Web storage and JSON</h3><p>Save objects in localStorage and sessionStorage.</p><details><summary>How to run</summary><pre>Open index.html in a browser.</pre></details><p class="links"><a class="live" href="theory/lecture%207/index.html">Open live page</a><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%207">View code</a></p></article><article class="card" data-search="lecture 8: server-side rendering render pages with ejs and jinja2 and serve static files."><h3>Lecture 8: Server-side rendering</h3><p>Render pages with EJS and Jinja2 and serve static files.</p><details><summary>How to run</summary><pre>cd express-ejs
+npm install
+npm start
+# FastAPI
+cd fastapi-jinja
+pip install -r requirements.txt
+uvicorn main:app --reload</pre></details><details><summary>Show output</summary><pre>GET / -&gt; 200 (HTML, 491 chars)
+GET /about -&gt; 200 (HTML, 243 chars)
+GET /style.css -&gt; 200 (HTML, 182 chars)
+GET / -&gt; 200 (HTML, 251 chars)
+GET /static/images/server.svg -&gt; 200 (HTML, 279 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%208">View code</a></p></article><article class="card" data-search="lecture 13: sql and mongodb do the same student queries in postgresql and mongodb."><h3>Lecture 13: SQL and MongoDB</h3><p>Do the same student queries in PostgreSQL and MongoDB.</p><details><summary>How to run</summary><pre>psql -d student_management -f students.sql
+npm install
+npm start</pre></details><details><summary>Show output</summary><pre># PostgreSQL
+{&quot;name&quot;:&quot;Aarav&quot;,&quot;email&quot;:&quot;aarav@example.com&quot;}
+{&quot;name&quot;:&quot;Rohan&quot;,&quot;email&quot;:&quot;rohan@example.com&quot;}
+
+{&quot;name&quot;:&quot;Diya&quot;,&quot;enrollment_date&quot;:&quot;2024-08-05T00:00:00.000Z&quot;}
+{&quot;name&quot;:&quot;Rohan&quot;,&quot;enrollment_date&quot;:&quot;2024-08-06T00:00:00.000Z&quot;}
+{&quot;name&quot;:&quot;Kabir&quot;,&quot;enrollment_date&quot;:&quot;2025-08-01T00:00:00.000Z&quot;}
+
+{&quot;id&quot;:1,&quot;name&quot;:&quot;Aarav&quot;,&quot;branch&quot;:&quot;CSE&quot;}
+{&quot;id&quot;:2,&quot;name&quot;:&quot;Diya&quot;,&quot;branch&quot;:&quot;CSE&quot;}
+{&quot;id&quot;:3,&quot;name&quot;:&quot;Rohan&quot;,&quot;branch&quot;:&quot;CSE&quot;}
+{&quot;id&quot;:4,&quot;name&quot;:&quot;Meera&quot;,&quot;branch&quot;:&quot;IT&quot;}
+
+# MongoDB
+CSE students: [ &#x27;Aarav&#x27;, &#x27;Rohan&#x27; ]
+After January 2024: [ &#x27;Diya&#x27;, &#x27;Rohan&#x27; ]
+After update and delete: [ &#x27;Diya&#x27;, &#x27;Rohan&#x27; ]</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%2013">View code</a></p></article><article class="card" data-search="lecture 14: schema design and normalization design a library schema and normalize an order table to 3nf. see er-diagram.md."><h3>Lecture 14: Schema design and normalization</h3><p>Design a library schema and normalize an order table to 3NF. See er-diagram.md.</p><details><summary>How to run</summary><pre>psql -d your_database -f library.sql
+psql -d your_database -f orders_3nf.sql</pre></details><details><summary>Show output</summary><pre># library.sql
+{&quot;member&quot;:&quot;Aarav&quot;,&quot;title&quot;:&quot;Database Basics&quot;,&quot;authors&quot;:&quot;Author A, Author B&quot;}
+{&quot;member&quot;:&quot;Aarav&quot;,&quot;title&quot;:&quot;Web Servers&quot;,&quot;authors&quot;:&quot;Author B&quot;}
+
+# orders_3nf.sql
+{&quot;order_id&quot;:1,&quot;name&quot;:&quot;Aarav&quot;,&quot;email&quot;:&quot;aarav@example.com&quot;,&quot;product&quot;:&quot;Laptop&quot;,&quot;price&quot;:&quot;65000.00&quot;,&quot;quantity&quot;:1}
+{&quot;order_id&quot;:1,&quot;name&quot;:&quot;Aarav&quot;,&quot;email&quot;:&quot;aarav@example.com&quot;,&quot;product&quot;:&quot;Mouse&quot;,&quot;price&quot;:&quot;500.00&quot;,&quot;quantity&quot;:2}
+{&quot;order_id&quot;:2,&quot;name&quot;:&quot;Diya&quot;,&quot;email&quot;:&quot;diya@example.com&quot;,&quot;product&quot;:&quot;Keyboard&quot;,&quot;price&quot;:&quot;1500.00&quot;,&quot;quantity&quot;:1}</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%2014">View code</a></p></article><article class="card" data-search="lecture 15: data modeling create sqlalchemy and mongoose models with validation. see ecommerce-model.md."><h3>Lecture 15: Data modeling</h3><p>Create SQLAlchemy and Mongoose models with validation. See ecommerce-model.md.</p><details><summary>How to run</summary><pre>pip install -r requirements.txt
+python crud.py
+cd blog
+npm install
+npm start</pre></details><details><summary>Show output</summary><pre>Created: Aarav in Computer Science
+CSE students: [&#x27;Aarav&#x27;]
+New branch: IT
+Duplicate email rejected
+Enrollments before delete: 2
+Enrollments after delete: 0
+
+# Mongoose
+Diya commented on &quot;Mongoose&quot;
+Enum check: `unknown` is not a valid enum value for path `status`.
+Unique check: error code 11000</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture15">View code</a></p></article><article class="card" data-search="lecture 19: implementing rest apis build a student api with filters, pagination, enrollments and error handling."><h3>Lecture 19: Implementing REST APIs</h3><p>Build a student API with filters, pagination, enrollments and error handling.</p><details><summary>How to run</summary><pre>pip install -r requirements.txt
+uvicorn main:app --reload</pre></details><details><summary>Show output</summary><pre>POST /students -&gt; 201 {&quot;name&quot;:&quot;Aarav&quot;,&quot;email&quot;:&quot;aarav@example.com&quot;,&quot;branch&quot;:&quot;CSE&quot;,&quot;department&quot;:&quot;Computing&quot;,&quot;id&quot;:1}
+POST /students -&gt; 409 {&quot;detail&quot;:&quot;Email already exists&quot;}
+POST /students -&gt; 422 {&quot;detail&quot;:[{&quot;type&quot;:&quot;value_error&quot;,&quot;loc&quot;:[&quot;body&quot;,&quot;email&quot;],&quot;msg&quot;:&quot;value is not a valid email address: An email address must have an @-sign.&quot;,&quot;input&quot;:&quot;bad&quot;,&quot;ctx&quot;:{&quot;reason&quot;:&quot;An email address must have an @-sign.&quot;}}]}
+POST /students -&gt; 201 {&quot;name&quot;:&quot;Diya&quot;,&quot;email&quot;:&quot;diya@example.com&quot;,&quot;branch&quot;:&quot;IT&quot;,&quot;department&quot;:&quot;Computing&quot;,&quot;id&quot;:2}
+GET /students?page=1&amp;limit=1 -&gt; 200 {&quot;items&quot;:[{&quot;name&quot;:&quot;Aarav&quot;,&quot;email&quot;:&quot;aarav@example.com&quot;,&quot;branch&quot;:&quot;CSE&quot;,&quot;department&quot;:&quot;Computing&quot;,&quot;id&quot;:1}],&quot;page&quot;:1,&quot;limit&quot;:1,&quot;total&quot;:2,&quot;total_pages&quot;:2}
+GET /students?branch=IT&amp;search=diy -&gt; 200 {&quot;items&quot;:[{&quot;name&quot;:&quot;Diya&quot;,&quot;email&quot;:&quot;diya@example.com&quot;,&quot;branch&quot;:&quot;IT&quot;,&quot;department&quot;:&quot;Computing&quot;,&quot;id&quot;:2}],&quot;page&quot;:1,&quot;limit&quot;:10,&quot;total&quot;:1,&quot;total_pages&quot;:1}
+GET /students?search=%25 -&gt; 200 {&quot;items&quot;:[],&quot;page&quot;:1,&quot;limit&quot;:10,&quot;total&quot;:0,&quot;total_pages&quot;:0}
+PUT /students/2 -&gt; 409 {&quot;detail&quot;:&quot;Email already exists&quot;}
+PUT /students/1 -&gt; 200 {&quot;name&quot;:&quot;Aarav&quot;,&quot;email&quot;:&quot;aarav@example.com&quot;,&quot;branch&quot;:&quot;ECE&quot;,&quot;department&quot;:&quot;Computing&quot;,&quot;id&quot;:1}
+POST /courses -&gt; 201 {&quot;code&quot;:&quot;CSFS3008P&quot;,&quot;title&quot;:&quot;Backend Development&quot;,&quot;id&quot;:1}
+POST /courses -&gt; 409 {&quot;detail&quot;:&quot;Course code already exists&quot;}
+POST /students/1/enrollments -&gt; 201 {&quot;id&quot;:1,&quot;course&quot;:{&quot;code&quot;:&quot;CSFS3008P&quot;,&quot;title&quot;:&quot;Backend Development&quot;,&quot;id&quot;:1}}
+POST /students/1/enrollments -&gt; 409 {&quot;detail&quot;:&quot;Already enrolled&quot;}
+POST /students/1/enrollments -&gt; 404 {&quot;detail&quot;:&quot;Course not found&quot;}
+GET /students/1/enrollments -&gt; 200 [{&quot;id&quot;:1,&quot;course&quot;:{&quot;code&quot;:&quot;CSFS3008P&quot;,&quot;title&quot;:&quot;Backend Development&quot;,&quot;id&quot;:1}}]
+DELETE /students/1 -&gt; 204
+GET /students/1 -&gt; 404 {&quot;detail&quot;:&quot;Student not found&quot;}
+GET /docs -&gt; 200 (HTML, 1021 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture19_RESTful_APIs">View code</a></p></article><article class="card" data-search="lecture 26: django framework create a django project that returns json."><h3>Lecture 26: Django framework</h3><p>Create a Django project that returns JSON.</p><details><summary>How to run</summary><pre>pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver</pre></details><details><summary>Show output</summary><pre>GET / -&gt; 200 {&quot;message&quot;: &quot;Welcome to the Student Management API&quot;, &quot;version&quot;: &quot;1.0&quot;, &quot;status&quot;: &quot;running&quot;}
+GET /welcome/ -&gt; 200 (HTML, 46 chars)
+GET /health/ -&gt; 200 {&quot;status&quot;: &quot;ok&quot;}</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture26_Django_Framework">View code</a></p></article><article class="card" data-search="lecture 29: django testing and debugging test views, a model and a mocked external service."><h3>Lecture 29: Django testing and debugging</h3><p>Test views, a model and a mocked external service.</p><details><summary>How to run</summary><pre>pip install -r requirements.txt
+python manage.py test</pre></details><details><summary>Show output</summary><pre> identified no issues (0 silenced).
+Creating test database for alias &#x27;default&#x27; (&#x27;file:memorydb_default?mode=memory&amp;cache=shared&#x27;)...
+
+test_detail (students.tests.StudentAPITest.test_detail) ... ok
+test_detail_not_found (students.tests.StudentAPITest.test_detail_not_found) ... ok
+test_health_endpoint (students.tests.StudentAPITest.test_health_endpoint) ... ok
+test_list (students.tests.StudentAPITest.test_list) ... ok
+test_email_is_unique (students.tests.StudentModelTest.test_email_is_unique) ... ok
+test_string (students.tests.StudentModelTest.test_string) ... ok
+test_success (students.tests.ExternalServiceTest.test_success) ... ok
+test_timeout (students.tests.ExternalServiceTest.test_timeout) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.014s
+
+OK
+Destroying test database for alias &#x27;default&#x27; (&#x27;file:memorydb_default?mode=memory&amp;cache=shared&#x27;)...</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture29_Django_Testing_Debugging">View code</a></p></article><article class="card" data-search="lecture 37: deployment environments read settings and secrets from environment variables."><h3>Lecture 37: Deployment environments</h3><p>Read settings and secrets from environment variables.</p><details><summary>How to run</summary><pre>npm install
+cp .env.example .env
+npm start</pre></details><details><summary>Show output</summary><pre>GET /health -&gt; 200 {&quot;status&quot;:&quot;healthy&quot;,&quot;environment&quot;:&quot;staging&quot;}
+GET /config -&gt; 200 {&quot;environment&quot;:&quot;staging&quot;,&quot;apiKeySet&quot;:true}
+APP_ENV=production without API_KEY -&gt; exits with: API_KEY is required in production</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture_37_Deployment_Environments">View code</a></p></article><article class="card" data-search="lecture 39: docker practical containerize the same student api in fastapi and express."><h3>Lecture 39: Docker practical</h3><p>Containerize the same Student API in FastAPI and Express.</p><details><summary>How to run</summary><pre>docker build -t student-api-fastapi:1.0 fastapi-app
+docker run -d --name student-fastapi -p 8000:8000 student-api-fastapi:1.0
+docker build -t student-api-express:1.0 express-app
+docker run -d --name student-express -p 3000:3000 student-api-express:1.0</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture_39_Docker_Practical">View code</a></p></article><article class="card" data-search="docker express practical run an express app using a dockerfile and docker compose."><h3>Docker Express practical</h3><p>Run an Express app using a Dockerfile and Docker Compose.</p><details><summary>How to run</summary><pre>docker compose up --build</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Docker_Express_Practical">View code</a></p></article></div>
+</main>
+<footer class="mute">Server programs cannot run on GitHub Pages, so their recorded test output is shown. The code in this repository was generated with the help of an AI tool (Claude Code, by Anthropic).</footer>
+<script>
+document.getElementById("search").addEventListener("input",function(e){
+  const q=e.target.value.toLowerCase();
+  document.querySelectorAll(".card").forEach(c=>c.hidden=!c.dataset.search.includes(q));
+});
+</script>
 </body>
 </html>

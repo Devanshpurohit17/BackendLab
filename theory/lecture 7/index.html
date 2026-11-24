@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 7 - Web Storage and JSON</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>localStorage, sessionStorage and JSON</h1>
+<p><input id="name" placeholder="Your name" aria-label="Name"></p>
+<button id="saveLocal">Save in localStorage</button>
+<button id="saveSession">Save in sessionStorage</button>
+<button id="remove">Remove</button>
+<h2>Stored values</h2>
+<pre id="out"></pre>
+<p>Reload the page: both remain. Close the tab and open it again: only localStorage remains.</p>
+<script>
+  const KEY = "lecture7-user";
+  const input = document.getElementById("name");
+
+  // Storage holds only strings, so objects are converted to JSON
+  const save = (storage) => {
+    storage.setItem(KEY, JSON.stringify({ name: input.value, savedAt: new Date().toISOString() }));
+    show();
+  };
+  const read = (storage) => JSON.parse(storage.getItem(KEY));
+  function show() {
+    document.getElementById("out").textContent =
+      JSON.stringify({ local: read(localStorage), session: read(sessionStorage) }, null, 2);
+  }
+
+  document.getElementById("saveLocal").onclick = () => save(localStorage);
+  document.getElementById("saveSession").onclick = () => save(sessionStorage);
+  document.getElementById("remove").onclick = () => {
+    localStorage.removeItem(KEY);
+    sessionStorage.removeItem(KEY);
+    show();
+  };
+  window.addEventListener("storage", show); // runs when another tab changes localStorage
+  show();
+</script>
+</body>
+</html>

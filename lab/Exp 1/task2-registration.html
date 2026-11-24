@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2 - Event Registration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Event Registration</h1>
+<form id="form">
+  <fieldset>
+    <legend>Personal details</legend>
+    <label>Name <input name="name" required></label>
+    <label>Email <input type="email" name="email" required></label>
+    <label>Phone <input type="tel" name="phone" pattern="[0-9]{10}" title="10 digits" required></label>
+    <label>Age <input type="number" name="age" min="16" max="100" required></label>
+    <label>Profile picture <input type="file" name="picture" accept="image/*"></label>
+  </fieldset>
+  <fieldset>
+    <legend>Event details</legend>
+    <label>Event
+      <select name="event" required>
+        <option value="">Select</option>
+        <optgroup label="Technical"><option>Hackathon</option><option>Backend Workshop</option></optgroup>
+        <optgroup label="Cultural"><option>Music Night</option><option>Drama</option></optgroup>
+      </select>
+    </label>
+    <p>Dietary preference</p>
+    <label class="inline"><input type="radio" name="diet" value="Veg" checked> Veg</label>
+    <label class="inline"><input type="radio" name="diet" value="Non-veg"> Non-veg</label>
+    <label class="inline"><input type="radio" name="diet" value="Vegan"> Vegan</label>
+    <p>Sessions</p>
+    <label class="inline"><input type="checkbox" name="session" value="Morning"> Morning</label>
+    <label class="inline"><input type="checkbox" name="session" value="Afternoon"> Afternoon</label>
+    <label>Experience (1-10) <input type="range" name="experience" min="1" max="10" value="5"></label>
+    <label>Special requests <textarea name="requests" rows="3"></textarea></label>
+  </fieldset>
+  <button>Register</button>
+</form>
+<p id="result" role="status"></p>
+<script>
+  document.getElementById("form").addEventListener("submit", function (event) {
+    event.preventDefault(); // there is no server in this experiment
+    const data = new FormData(event.target);
+    document.getElementById("result").textContent =
+      data.get("name") + " registered for " + data.get("event");
+  });
+</script>
+</body>
+</html>

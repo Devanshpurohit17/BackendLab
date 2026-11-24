@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>My Notes</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+  <h1>My Notes</h1>
+  <p><a href="/notes/new">Add note</a></p>
+  <form method="GET" action="/notes">
+    <select name="category" aria-label="Category">
+      <option value="">All categories</option>
+      <% categories.forEach((c) => { %>
+        <option <%= c === category ? "selected" : "" %>><%= c %></option>
+      <% }) %>
+    </select>
+    <button>Filter</button>
+  </form>
+  <% if (notes.length === 0) { %><p>No notes available.</p><% } %>
+  <% notes.forEach((note) => { %>
+    <div class="note">
+      <h2><%= note.title %></h2>
+      <p><%= note.content %></p>
+      <small><%= note.category %> | <%= note.createdAt.toLocaleString() %></small>
+      <form action="/notes/<%= note._id %>/delete" method="POST"><button>Delete</button></form>
+    </div>
+  <% }) %>
+</body>
+</html>

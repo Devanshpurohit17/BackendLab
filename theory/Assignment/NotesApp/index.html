@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 1 - Notes App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Notes</h1>
+  <button id="theme">Dark / Light</button>
+</header>
+<form id="form">
+  <textarea id="text" rows="3" placeholder="Write a note" aria-label="Note" required></textarea>
+  <button id="save">Add note</button>
+  <button type="button" id="cancel" hidden>Cancel</button>
+</form>
+<p>
+  <input id="search" placeholder="Search notes" aria-label="Search">
+  <button id="export">Export JSON</button>
+</p>
+<ul id="list"></ul>
+<script src="app.js"></script>
+</body>
+</html>

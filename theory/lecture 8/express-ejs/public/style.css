@@ -1,0 +1,4 @@
+body { background: #f6f9fc; font-family: Georgia, serif; margin: 24px; }
+th, td { padding: 8px 16px; text-align: left; }
+.even { background: #dbe9f6; }
+.odd { background: #ffffff; }

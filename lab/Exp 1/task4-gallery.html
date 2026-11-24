@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4 - Multimedia Gallery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Multimedia Gallery</h1>
+<figure>
+  <picture>
+    <source media="(max-width: 600px)" srcset="media/small.svg">
+    <img src="media/large.svg" alt="Client sends a request to a server">
+  </picture>
+  <figcaption>The image changes below 600px width.</figcaption>
+</figure>
+<h2>Audio</h2>
+<audio controls src="media/tone.wav"></audio>
+<h2>Video</h2>
+<video controls width="400" poster="media/large.svg" src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"></video>
+<p>The video is a CC0 sample hosted by MDN and needs internet.</p>
+<h2>Progress</h2>
+<label>Course <progress value="70" max="100">70%</progress></label>
+<label>Storage <meter value="55" min="0" max="100" high="80">55%</meter></label>
+</body>
+</html>

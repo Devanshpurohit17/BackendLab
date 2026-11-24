@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exp 5 - JavaScript Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Exp 5: JavaScript Demo</h1>
+<p>The console output is copied below. You can also press F12.</p>
+<pre id="out"></pre>
+<script>
+  // Copy console.log output onto the page
+  const realLog = console.log;
+  console.log = function (...args) {
+    realLog(...args);
+    document.getElementById("out").textContent +=
+      args.map((a) => (typeof a === "string" ? a : JSON.stringify(a))).join(" ") + "\n";
+  };
+</script>
+<script src="script.js"></script>
+<script src="script2.js"></script>
+<script src="library.js"></script>
+</body>
+</html>

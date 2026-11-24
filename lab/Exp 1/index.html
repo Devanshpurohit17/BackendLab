@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exp 1 - HTML5 Elements</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Experiment 1: HTML5 Elements</h1>
+  <nav>
+    <a href="task1-blog.html">Task 1</a><a href="task2-registration.html">Task 2</a>
+    <a href="task3-comparison.html">Task 3</a><a href="task4-gallery.html">Task 4</a>
+    <a href="task5-interactive.html">Task 5</a>
+  </nav>
+</header>
+<main>
+  <section>
+    <h2>Text elements</h2>
+    <p><strong>strong</strong>, <em>em</em>, <b>b</b>, <i>i</i>, <u>u</u>, <s>s</s>, <mark>mark</mark>,
+       <small>small</small>, <del>del</del> <ins>ins</ins>, H<sub>2</sub>O, x<sup>2</sup>,
+       <code>code</code>, <kbd>Ctrl</kbd> + <kbd>S</kbd>, <samp>output</samp>, <var>n</var>,
+       <q>inline quote</q>, <cite>cite</cite>, <dfn>dfn</dfn>,
+       <abbr title="Application Programming Interface">API</abbr>,
+       <time datetime="2026-11-24">24 November 2026</time>, <data value="13">thirteen</data>.</p>
+    <blockquote>A backend receives requests and sends responses.</blockquote>
+    <pre>GET /students HTTP/1.1
+Host: localhost:3000</pre>
+    <p>A long word can break<wbr>here.<br>This is on a new line.</p>
+    <p><bdo dir="rtl">right to left</bdo> | <ruby>API<rt>ay-pee-eye</rt></ruby></p>
+    <hr>
+  </section>
+  <section>
+    <h2>Lists</h2>
+    <ul><li>Node.js</li><li>Django</li></ul>
+    <ol><li>Request</li><li>Process</li><li>Response</li></ol>
+    <dl><dt>Server</dt><dd>Answers requests</dd><dt>Client</dt><dd>Sends requests</dd></dl>
+  </section>
+  <section>
+    <h2>Table</h2>
+    <table>
+      <caption>HTTP methods</caption>
+      <colgroup><col style="width:30%"><col></colgroup>
+      <thead><tr><th scope="col">Method</th><th scope="col">Purpose</th></tr></thead>
+      <tbody><tr><td>GET</td><td>Read</td></tr><tr><td>POST</td><td>Create</td></tr></tbody>
+      <tfoot><tr><td colspan="2">Two of the common methods</td></tr></tfoot>
+    </table>
+  </section>
+  <section>
+    <h2>Form inputs</h2>
+    <form>
+      <fieldset>
+        <legend>Input types</legend>
+        <label>Text <input type="text"></label>
+        <label>Email <input type="email"></label>
+        <label>Number <input type="number" min="1" max="10"></label>
+        <label>Date <input type="date"></label>
+        <label>Colour <input type="color"></label>
+        <label>URL <input type="url"></label>
+        <label>Course <select><optgroup label="Backend"><option>Node.js</option><option>Django</option></optgroup></select></label>
+        <label>Message <textarea rows="2"></textarea></label>
+        <button type="reset">Reset</button>
+      </fieldset>
+    </form>
+  </section>
+  <section>
+    <h2>Graphics and embedded content</h2>
+    <svg width="120" height="60" role="img" aria-label="Blue rectangle"><rect width="120" height="60" fill="steelblue"/></svg>
+    <canvas id="canvas" width="120" height="60"></canvas>
+    <iframe title="Embedded page" srcdoc="<p>Inside an iframe</p>" width="200" height="60"></iframe>
+    <p>Meter <meter value="0.7">70%</meter> Progress <progress value="40" max="100"></progress></p>
+  </section>
+</main>
+<footer><address>Devansh Purohit, SAP ID 590017030</address></footer>
+<noscript>JavaScript is disabled.</noscript>
+<script>
+  const ctx = document.getElementById("canvas").getContext("2d");
+  ctx.fillStyle = "tomato";
+  ctx.arc(60, 30, 25, 0, Math.PI * 2);
+  ctx.fill();
+</script>
+</body>
+</html>

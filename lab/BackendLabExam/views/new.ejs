@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Add Note</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+  <h1>Add Note</h1>
+  <% if (error) { %><p class="error"><%= error %></p><% } %>
+  <form action="/notes" method="POST">
+    <label>Title <input name="title" value="<%= note.title || '' %>" required></label>
+    <label>Content <textarea name="content" rows="5" required><%= note.content || '' %></textarea></label>
+    <label>Category <input name="category" value="<%= note.category || '' %>"></label>
+    <button>Save</button>
+  </form>
+  <p><a href="/notes">Back</a></p>
+</body>
+</html>

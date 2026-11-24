@@ -1,0 +1,10 @@
+:root { --bg: #fff; --fg: #222; --card: #f1f4f8; }
+.dark { --bg: #1e1e24; --fg: #eee; --card: #2c2c36; }
+body { background: var(--bg); color: var(--fg); font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 16px; }
+header { display: flex; justify-content: space-between; align-items: center; }
+textarea { width: 100%; box-sizing: border-box; padding: 8px; }
+button { margin: 4px 4px 4px 0; padding: 6px 10px; }
+ul { list-style: none; padding: 0; }
+li { background: var(--card); padding: 12px; margin-bottom: 10px; border-radius: 6px; }
+li p { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0 0 6px; }
+.done p { text-decoration: line-through; opacity: 0.6; }

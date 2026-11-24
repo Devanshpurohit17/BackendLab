@@ -1,0 +1,7 @@
+{
+  "name": "assignment2-mongo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": { "start": "node products.js" },
+  "dependencies": { "mongodb": "^6.12.0" }
+}

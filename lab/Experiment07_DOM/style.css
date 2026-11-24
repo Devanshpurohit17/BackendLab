@@ -1,0 +1,4 @@
+body { font-family: Arial, sans-serif; max-width: 700px; margin: 24px auto; padding: 0 16px; }
+pre, #box { background: #f1f4f8; padding: 12px; overflow-x: auto; }
+#box.highlight { background: gold; }
+button { margin: 4px; padding: 6px 10px; }
