@@ -42,4 +42,4 @@ Devansh Purohit, SAP ID 590017030
 
 ## AI use disclosure
 
-The code in this repository was generated with the help of an AI tool (Claude Code, by Anthropic).
+The code in this repository was generated with the help of an AI tool, as disclosed under the course AI policy.
