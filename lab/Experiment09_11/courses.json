@@ -1,9 +1,0 @@
-{
-  "courses": [
-    { "code": "BD", "title": "Backend Development", "credits": 4 },
-    { "code": "OS", "title": "Operating Systems", "credits": 4 },
-    { "code": "CN", "title": "Computer Networks", "credits": 3 },
-    { "code": "DB", "title": "Database Systems", "credits": 4 },
-    { "code": "CR", "title": "Cryptography", "credits": 3 }
-  ]
-}

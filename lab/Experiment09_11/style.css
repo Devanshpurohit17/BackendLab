@@ -1,7 +1,0 @@
-body { font-family: Arial, sans-serif; max-width: 900px; margin: 24px auto; padding: 0 16px; }
-nav a { margin-right: 14px; }
-table { border-collapse: collapse; width: 100%; margin-top: 12px; }
-th, td { border: 1px solid #aab; padding: 8px; text-align: left; }
-button, input, select { padding: 7px; margin: 4px 4px 4px 0; }
-.error { color: #b00020; }
-.card { background: #eef5ff; padding: 16px; margin-top: 12px; }
