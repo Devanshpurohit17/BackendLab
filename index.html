@@ -5,32 +5,90 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Backend Development | Devansh Purohit</title>
 <meta name="description" content="Backend Development lab experiments and theory assignments by Devansh Purohit">
+<meta name="color-scheme" content="light dark">
+<script>(function(){var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;})();</script>
 <style>
-:root{--bg:#f7f8fa;--fg:#1b2430;--mute:#55606e;--card:#fff;--line:#d9dee5;--acc:#0b5c8a;--code:#eef1f5}
-@media(prefers-color-scheme:dark){:root{--bg:#12171e;--fg:#e8edf3;--mute:#a5b0bd;--card:#1b222c;--line:#323c49;--acc:#6cc0ef;--code:#10151b}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
-header,main,footer{max-width:1080px;margin:auto;padding:24px 20px}header{padding-top:56px}
-h1{margin:0;font-size:clamp(1.9rem,5vw,3rem);line-height:1.1}h2{margin:36px 0 14px}h3{margin:0 0 6px;font-size:1.05rem}
-p{margin:0 0 12px}.mute{color:var(--mute)}a{color:var(--acc)}nav a{margin-right:18px}
-input{width:100%;max-width:420px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:inherit;font:inherit}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px;align-items:start}
-.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px;min-width:0}.card[hidden]{display:none}
-pre{background:var(--code);padding:10px;overflow:auto;max-height:340px;font-size:.8rem;border-radius:4px}summary{cursor:pointer}
-.links{margin:14px 0 0}.links a{margin-right:16px}.live{font-weight:600}
+:root{--bg:#f6f7f9;--surface:#fff;--fg:#14202b;--mute:#5a6673;--line:#e1e5ea;--acc:#0b7a6e;--acc-ink:#fff;--acc-soft:#e3f2ef;--code:#0f1a22;--code-fg:#dbe7ee;--hero1:#0f2e2b;--hero2:#123b3a;--shadow:0 1px 2px rgba(16,24,40,.05),0 8px 24px rgba(16,24,40,.06)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1217;--surface:#151c23;--fg:#e6edf2;--mute:#9aa7b3;--line:#26313b;--acc:#3cc4ad;--acc-ink:#062521;--acc-soft:#16302c;--code:#0a0f14;--hero1:#0b1f1d;--hero2:#0f2e2b;--shadow:0 1px 2px rgba(0,0,0,.3)}}
+:root[data-theme=dark]{--bg:#0d1217;--surface:#151c23;--fg:#e6edf2;--mute:#9aa7b3;--line:#26313b;--acc:#3cc4ad;--acc-ink:#062521;--acc-soft:#16302c;--code:#0a0f14;--hero1:#0b1f1d;--hero2:#0f2e2b;--shadow:0 1px 2px rgba(0,0,0,.3)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--acc)}.wrap{max-width:1120px;margin:auto;padding:0 20px}
+.hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#eaf6f3;padding:28px 0 64px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(60,196,173,.25),transparent 70%);pointer-events:none}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;position:relative;z-index:1}
+.brand{font-weight:700;letter-spacing:.02em;color:#eaf6f3;text-decoration:none}.brand span{color:#3cc4ad}
+.theme{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#eaf6f3;border-radius:999px;padding:6px 14px;font:inherit;font-size:.85rem;cursor:pointer}
+.theme:hover{background:rgba(255,255,255,.18)}
+.eyebrow{margin:48px 0 8px;color:#9fd9cf;font-size:.85rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+h1{margin:0;font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.05;letter-spacing:-.02em}
+.lead{max-width:640px;margin:14px 0 0;color:#c6e3dd;font-size:1.08rem}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin:18px 0 0;padding:0;list-style:none;color:#c6e3dd;font-size:.92rem}.meta b{color:#fff}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;position:relative;z-index:1}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;font-weight:600;font-size:.9rem;transition:transform .15s,border-color .15s}
+.btn:hover{transform:translateY(-1px);border-color:var(--acc)}.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.hero .btn{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25);color:#fff}.hero .btn.primary{background:#3cc4ad;border-color:#3cc4ad;color:#062521}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:-36px auto 0;position:relative}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.stat b{display:block;font-size:1.9rem;line-height:1.1;color:var(--acc)}.stat span{color:var(--mute);font-size:.88rem}
+.stack{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:24px 0 0}
+.stack li,.tech li{font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--acc-soft);color:var(--acc)}
+.toolbar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:28px}
+.toolbar .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding-top:12px;padding-bottom:12px}
+.search{flex:1 1 260px;position:relative}.search input{width:100%;padding:10px 14px 10px 38px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:inherit;font:inherit}
+.search input:focus{outline:2px solid var(--acc);outline-offset:1px}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--mute)}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{font:inherit;font-size:.86rem;font-weight:600;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.count{color:var(--mute);font-size:.86rem;margin-left:auto}
+section{padding:34px 0 6px}.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;margin-bottom:16px}
+h2{margin:0;font-size:1.5rem;letter-spacing:-.01em}.sec-head p{margin:0;color:var(--mute);font-size:.92rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:18px;align-items:stretch}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow);min-width:0;transition:transform .18s,border-color .18s}
+.card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--acc) 45%,var(--line))}.card[hidden],section[hidden]{display:none}
+.card-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.num{font:700 .8rem ui-monospace,Consolas,monospace;color:var(--acc);background:var(--acc-soft);border-radius:8px;padding:3px 8px}
+.kicker{color:var(--mute);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.card h3{margin:0 0 6px;font-size:1.12rem;line-height:1.3}.card p{margin:0;color:var(--mute);font-size:.94rem}
+.tech{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:14px 0 0}
+.more{margin-top:14px}.more:empty{display:none}
+details{border-top:1px solid var(--line)}details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;padding:9px 0;font-size:.88rem;font-weight:600;list-style:none;display:flex;justify-content:space-between}
+summary::-webkit-details-marker{display:none}summary:after{content:"+";color:var(--mute);font-weight:400}details[open] summary:after{content:"\2212"}
+pre{margin:0 0 12px;background:var(--code);color:var(--code-fg);padding:12px;border-radius:10px;overflow:auto;max-height:320px;font-size:.78rem;line-height:1.5}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:16px}
+.empty{display:none;text-align:center;color:var(--mute);padding:40px 0}
+footer{margin-top:48px;border-top:1px solid var(--line);padding:26px 0 40px;color:var(--mute);font-size:.88rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}footer p{margin:0;max-width:720px}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.count{margin-left:0;width:100%}.eyebrow{margin-top:32px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<header>
-<p class="mute">CSFS3008P, Semester 5</p>
+<header class="hero">
+<div class="wrap">
+<div class="top"><a class="brand" href="#">Backend<span>Lab</span></a><button class="theme" id="theme" type="button">Switch theme</button></div>
+<p class="eyebrow">CSFS3008P &middot; Semester 5 &middot; UPES</p>
 <h1>Backend Development</h1>
-<p>Lab experiments and theory work by Devansh Purohit (SAP ID 590017030).</p>
-<nav><a href="#lab">Lab</a><a href="#theory">Theory</a><a href="https://github.com/Devanshpurohit17/BackendLab">GitHub repository</a><a href="https://github.com/Devanshpurohit17">GitHub profile</a></nav>
+<p class="lead">Lab experiments and theory assignments, from HTML pages to Express, MongoDB, PostgreSQL, Django, FastAPI and Docker.</p>
+<ul class="meta"><li><b>Devansh Purohit</b></li><li>SAP ID <b>590017030</b></li><li>Faculty: Dr. Prateek Raj Gautam</li></ul>
+<div class="cta"><a class="btn primary" href="#lab">Browse the work</a><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab">GitHub repository</a><a class="btn" href="https://github.com/Devanshpurohit17">GitHub profile</a></div>
+</div>
 </header>
-<main>
-<input id="search" type="search" placeholder="Search, for example MongoDB" aria-label="Search experiments">
-<h2 id="lab">Lab experiments</h2><div class="grid"><article class="card" data-search="experiment 1: html5 elements build pages with html5 elements, plus five practice tasks: blog, form, table, gallery and interactive elements."><h3>Experiment 1: HTML5 elements</h3><p>Build pages with HTML5 elements, plus five practice tasks: blog, form, table, gallery and interactive elements.</p><details><summary>How to run</summary><pre>Open index.html in a browser.</pre></details><p class="links"><a class="live" href="lab/Exp%201/index.html">Open live page</a><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Exp%201">View code</a></p></article><article class="card" data-search="experiment 5: javascript arrays, objects and functions use arrays, objects and functions, and build a small library manager."><h3>Experiment 5: JavaScript arrays, objects and functions</h3><p>Use arrays, objects and functions, and build a small library manager.</p><details><summary>How to run</summary><pre>node script.js
+<div class="wrap">
+<div class="stats"><div class="stat"><b>9</b><span>Lab experiments</span></div><div class="stat"><b>17</b><span>Theory items</span></div><div class="stat"><b>6</b><span>Live pages</span></div><div class="stat"><b>12</b><span>Technologies</span></div></div>
+<ul class="stack" aria-label="Technologies used"><li>HTML/CSS</li><li>JavaScript</li><li>Node.js</li><li>Express</li><li>EJS</li><li>MongoDB</li><li>PostgreSQL</li><li>Django</li><li>FastAPI</li><li>Flask</li><li>SQLAlchemy</li><li>Docker</li></ul>
+</div>
+<div class="toolbar"><div class="wrap">
+<label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="search" type="search" placeholder="Search, e.g. MongoDB" aria-label="Search the work"></label>
+<div class="filters" role="group" aria-label="Filter"><button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="lab" aria-pressed="false">Lab</button><button type="button" data-f="theory" aria-pressed="false">Theory</button><button type="button" data-f="live" aria-pressed="false">Live pages</button></div>
+<span class="count" id="count" aria-live="polite"></span>
+</div></div>
+<main class="wrap">
+<section id="lab"><div class="sec-head"><h2>Lab experiments</h2><p>Hands-on experiments from the lab sessions</p></div><div class="grid"><article class="card" data-group="lab" data-live="1" data-search="experiment 1: html5 elements build pages with html5 elements, plus five practice tasks: blog, form, table, gallery and interactive elements. html/css javascript"><div class="card-top"><span class="num">01</span><span class="kicker">Experiment 1</span></div><h3>HTML5 elements</h3><p>Build pages with HTML5 elements, plus five practice tasks: blog, form, table, gallery and interactive elements.</p><ul class="tech"><li>HTML/CSS</li><li>JavaScript</li></ul><div class="more"><details><summary>How to run</summary><pre>Open index.html in a browser.</pre></details></div><div class="actions"><a class="btn primary" href="lab/Exp%201/index.html">Open live page <span aria-hidden="true">&#8599;</span></a><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Exp%201">View code</a></div></article><article class="card" data-group="lab" data-live="1" data-search="experiment 5: javascript arrays, objects and functions use arrays, objects and functions, and build a small library manager. html/css javascript"><div class="card-top"><span class="num">02</span><span class="kicker">Experiment 5</span></div><h3>JavaScript arrays, objects and functions</h3><p>Use arrays, objects and functions, and build a small library manager.</p><ul class="tech"><li>HTML/CSS</li><li>JavaScript</li></ul><div class="more"><details><summary>How to run</summary><pre>node script.js
 node script2.js
-node library.js</pre></details><details><summary>Show output</summary><pre>Fruits: [ &#x27;Apple&#x27;, &#x27;Banana&#x27;, &#x27;Mango&#x27; ]
+node library.js</pre></details><details><summary>Output</summary><pre>Fruits: [ &#x27;Apple&#x27;, &#x27;Banana&#x27;, &#x27;Mango&#x27; ]
 After push: [ &#x27;Apple&#x27;, &#x27;Banana&#x27;, &#x27;Mango&#x27;, &#x27;Orange&#x27; ]
 Student: {
   name: &#x27;Devansh Purohit&#x27;,
@@ -52,8 +110,8 @@ Library: [
   { title: &#x27;Eloquent JavaScript&#x27;, author: &#x27;Marijn Haverbeke&#x27; }
 ]
 Find &#x27;clean code&#x27;: { title: &#x27;Clean Code&#x27;, author: &#x27;Robert C. Martin&#x27; }
-Find &#x27;Unknown&#x27;: undefined</pre></details><p class="links"><a class="live" href="lab/Experiment%205/index.html">Open live page</a><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment%205">View code</a></p></article><article class="card" data-search="experiment 7: es6 and dom use es6 features and change a page through the dom."><h3>Experiment 7: ES6 and DOM</h3><p>Use ES6 features and change a page through the DOM.</p><details><summary>How to run</summary><pre>Serve this folder with Live Server (ES modules do not load from file://).</pre></details><p class="links"><a class="live" href="lab/Experiment07_DOM/index.html">Open live page</a><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment07_DOM">View code</a></p></article><article class="card" data-search="experiment 8: event handling build a to-do list using events, delegation and bubbling."><h3>Experiment 8: Event handling</h3><p>Build a to-do list using events, delegation and bubbling.</p><details><summary>How to run</summary><pre>Open index.html in a browser.</pre></details><p class="links"><a class="live" href="lab/Experiment08/index.html">Open live page</a><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment08">View code</a></p></article><article class="card" data-search="experiment 12: node, express and ejs create routes, a calculator api, student management, and ejs pages and forms."><h3>Experiment 12: Node, Express and EJS</h3><p>Create routes, a calculator API, student management, and EJS pages and forms.</p><details><summary>How to run</summary><pre>npm install
-npm start</pre></details><details><summary>Show output</summary><pre>GET / -&gt; 200 (HTML, 485 chars)
+Find &#x27;Unknown&#x27;: undefined</pre></details></div><div class="actions"><a class="btn primary" href="lab/Experiment%205/index.html">Open live page <span aria-hidden="true">&#8599;</span></a><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment%205">View code</a></div></article><article class="card" data-group="lab" data-live="1" data-search="experiment 7: es6 and dom use es6 features and change a page through the dom. html/css javascript"><div class="card-top"><span class="num">03</span><span class="kicker">Experiment 7</span></div><h3>ES6 and DOM</h3><p>Use ES6 features and change a page through the DOM.</p><ul class="tech"><li>HTML/CSS</li><li>JavaScript</li></ul><div class="more"><details><summary>How to run</summary><pre>Serve this folder with Live Server (ES modules do not load from file://).</pre></details></div><div class="actions"><a class="btn primary" href="lab/Experiment07_DOM/index.html">Open live page <span aria-hidden="true">&#8599;</span></a><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment07_DOM">View code</a></div></article><article class="card" data-group="lab" data-live="1" data-search="experiment 8: event handling build a to-do list using events, delegation and bubbling. html/css javascript"><div class="card-top"><span class="num">04</span><span class="kicker">Experiment 8</span></div><h3>Event handling</h3><p>Build a to-do list using events, delegation and bubbling.</p><ul class="tech"><li>HTML/CSS</li><li>JavaScript</li></ul><div class="more"><details><summary>How to run</summary><pre>Open index.html in a browser.</pre></details></div><div class="actions"><a class="btn primary" href="lab/Experiment08/index.html">Open live page <span aria-hidden="true">&#8599;</span></a><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment08">View code</a></div></article><article class="card" data-group="lab" data-live="0" data-search="experiment 12: node, express and ejs create routes, a calculator api, student management, and ejs pages and forms. node.js express ejs"><div class="card-top"><span class="num">05</span><span class="kicker">Experiment 12</span></div><h3>Node, Express and EJS</h3><p>Create routes, a calculator API, student management, and EJS pages and forms.</p><ul class="tech"><li>Node.js</li><li>Express</li><li>EJS</li></ul><div class="more"><details><summary>How to run</summary><pre>npm install
+npm start</pre></details><details><summary>Output</summary><pre>GET / -&gt; 200 (HTML, 485 chars)
 GET /text -&gt; 200 Devansh Purohit, 590017030, CSE
 GET /html -&gt; 200 (HTML, 46 chars)
 GET /json -&gt; 200 {&quot;name&quot;:&quot;Devansh Purohit&quot;,&quot;rollNumber&quot;:&quot;590017030&quot;,&quot;branch&quot;:&quot;CSE&quot;}
@@ -68,10 +126,10 @@ POST /students/add -&gt; 201 {&quot;id&quot;:3,&quot;name&quot;:&quot;Kabir&quot
 POST /students/add -&gt; 400 {&quot;error&quot;:&quot;name and course are required&quot;}
 GET /timetable -&gt; 200 (HTML, 626 chars)
 POST /register -&gt; 200 (HTML, 281 chars)
-POST /register -&gt; 400 (HTML, 575 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Exp%2012">View code</a></p></article><article class="card" data-search="experiment 12b: state management build a login system and a to-do list using sessions and cookies."><h3>Experiment 12B: State management</h3><p>Build a login system and a to-do list using sessions and cookies.</p><details><summary>How to run</summary><pre>npm install
+POST /register -&gt; 400 (HTML, 575 chars)</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Exp%2012">View code</a></div></article><article class="card" data-group="lab" data-live="0" data-search="experiment 12b: state management build a login system and a to-do list using sessions and cookies. node.js express ejs sessions bcrypt"><div class="card-top"><span class="num">06</span><span class="kicker">Experiment 12B</span></div><h3>State management</h3><p>Build a login system and a to-do list using sessions and cookies.</p><ul class="tech"><li>Node.js</li><li>Express</li><li>EJS</li><li>Sessions</li><li>bcrypt</li></ul><div class="more"><details><summary>How to run</summary><pre>npm install
 npm run login
 # or
-npm run todo</pre></details><details><summary>Show output</summary><pre>GET /dashboard -&gt; 302 Found. Redirecting to /login
+npm run todo</pre></details><details><summary>Output</summary><pre>GET /dashboard -&gt; 302 Found. Redirecting to /login
 POST /register -&gt; 302 Found. Redirecting to /login
 POST /register -&gt; 400 (HTML, 491 chars)
 POST /login -&gt; 401 (HTML, 484 chars)
@@ -85,20 +143,20 @@ GET / -&gt; 200 (HTML, 575 chars)
 POST /theme -&gt; 302 Found. Redirecting to /
 GET / -&gt; 200 (HTML, 574 chars)
 POST /delete/0 -&gt; 302 Found. Redirecting to /
-GET / -&gt; 200 (HTML, 435 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Exp%2012B">View code</a></p></article><article class="card" data-search="experiment 13a: mongodb and mongoose register and log in users stored in mongodb. passwords are hashed with bcrypt."><h3>Experiment 13A: MongoDB and Mongoose</h3><p>Register and log in users stored in MongoDB. Passwords are hashed with bcrypt.</p><details><summary>How to run</summary><pre># MongoDB must be running
+GET / -&gt; 200 (HTML, 435 chars)</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Exp%2012B">View code</a></div></article><article class="card" data-group="lab" data-live="0" data-search="experiment 13a: mongodb and mongoose register and log in users stored in mongodb. passwords are hashed with bcrypt. node.js express ejs mongodb bcrypt"><div class="card-top"><span class="num">07</span><span class="kicker">Experiment 13A</span></div><h3>MongoDB and Mongoose</h3><p>Register and log in users stored in MongoDB. Passwords are hashed with bcrypt.</p><ul class="tech"><li>Node.js</li><li>Express</li><li>EJS</li><li>MongoDB</li><li>bcrypt</li></ul><div class="more"><details><summary>How to run</summary><pre># MongoDB must be running
 npm install
-npm start</pre></details><details><summary>Show output</summary><pre>GET / -&gt; 200 (HTML, 732 chars)
+npm start</pre></details><details><summary>Output</summary><pre>GET / -&gt; 200 (HTML, 732 chars)
 POST /signup -&gt; 201 (HTML, 183 chars)
 POST /signup -&gt; 409 (HTML, 182 chars)
 POST /signup -&gt; 400 (HTML, 173 chars)
 POST /login -&gt; 200 (HTML, 195 chars)
 POST /login -&gt; 401 (HTML, 178 chars)
 POST /login -&gt; 401 (HTML, 178 chars)
-GET /users -&gt; 200 (HTML, 256 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment13A">View code</a></p></article><article class="card" data-search="experiment 15: django task tracker build a django to-do app with templates, static files and admin."><h3>Experiment 15: Django Task Tracker</h3><p>Build a Django to-do app with templates, static files and admin.</p><details><summary>How to run</summary><pre>pip install -r requirements.txt
+GET /users -&gt; 200 (HTML, 256 chars)</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment13A">View code</a></div></article><article class="card" data-group="lab" data-live="0" data-search="experiment 15: django task tracker build a django to-do app with templates, static files and admin. django"><div class="card-top"><span class="num">08</span><span class="kicker">Experiment 15</span></div><h3>Django Task Tracker</h3><p>Build a Django to-do app with templates, static files and admin.</p><ul class="tech"><li>Django</li></ul><div class="more"><details><summary>How to run</summary><pre>pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 # tests
-python manage.py test</pre></details><details><summary>Show output</summary><pre> identified no issues (0 silenced).
+python manage.py test</pre></details><details><summary>Output</summary><pre> identified no issues (0 silenced).
 Creating test database for alias &#x27;default&#x27; (&#x27;file:memorydb_default?mode=memory&amp;cache=shared&#x27;)...
 
 test_add (todo.tests.TaskTests.test_add) ... ok
@@ -109,22 +167,22 @@ test_get_cannot_delete (todo.tests.TaskTests.test_get_cannot_delete) ... ok
 test_toggle_and_delete (todo.tests.TaskTests.test_toggle_and_delete) ... ok
 
 ----------------------------------------------------------------------
-Ran 6 tests in 0.037s
+Ran 6 tests in 0.124s
 
 OK
-Destroying test database for alias &#x27;default&#x27; (&#x27;file:memorydb_default?mode=memory&amp;cache=shared&#x27;)...</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment15_Django_Todo_App">View code</a></p></article><article class="card" data-search="lab exam 01 a: my notes (re-implementation) add, view, filter and delete notes using express, ejs and mongodb. this is a later re-implementation for practice, not the code submitted in the exam."><h3>Lab Exam 01 A: My Notes (re-implementation)</h3><p>Add, view, filter and delete notes using Express, EJS and MongoDB. This is a later re-implementation for practice, not the code submitted in the exam.</p><details><summary>How to run</summary><pre># MongoDB must be running
+Destroying test database for alias &#x27;default&#x27; (&#x27;file:memorydb_default?mode=memory&amp;cache=shared&#x27;)...</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/Experiment15_Django_Todo_App">View code</a></div></article><article class="card" data-group="lab" data-live="0" data-search="lab exam 01 a: my notes (re-implementation) add, view, filter and delete notes using express, ejs and mongodb. this is a later re-implementation for practice, not the code submitted in the exam. node.js express ejs mongodb"><div class="card-top"><span class="num">09</span><span class="kicker">Lab Exam 01 A</span></div><h3>My Notes (re-implementation)</h3><p>Add, view, filter and delete notes using Express, EJS and MongoDB. This is a later re-implementation for practice, not the code submitted in the exam.</p><ul class="tech"><li>Node.js</li><li>Express</li><li>EJS</li><li>MongoDB</li></ul><div class="more"><details><summary>How to run</summary><pre># MongoDB must be running
 npm install
-npm start</pre></details><details><summary>Show output</summary><pre>GET /notes -&gt; 200 (HTML, 446 chars)
+npm start</pre></details><details><summary>Output</summary><pre>GET /notes -&gt; 200 (HTML, 446 chars)
 POST /notes -&gt; 400 (HTML, 554 chars)
 POST /notes -&gt; 302 Found. Redirecting to /notes
 GET /notes?category=Study -&gt; 200 (HTML, 714 chars)
 GET /notes?category=Nope -&gt; 200 (HTML, 485 chars)
 POST /notes/bad/delete -&gt; 400 (HTML, 15 chars)
 POST /notes/6b054ec0d8c41d6abc806376/delete -&gt; 302 Found. Redirecting to /notes
-GET /notes -&gt; 200 (HTML, 446 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/BackendLabExam">View code</a></p></article></div>
-<h2 id="theory">Theory assignments and lectures</h2><div class="grid"><article class="card" data-search="assignment 1: notes app create, edit, delete and search notes saved in localstorage."><h3>Assignment 1: Notes App</h3><p>Create, edit, delete and search notes saved in localStorage.</p><details><summary>How to run</summary><pre>Open index.html in a browser.</pre></details><p class="links"><a class="live" href="theory/Assignment/NotesApp/index.html">Open live page</a><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Assignment/NotesApp">View code</a></p></article><article class="card" data-search="assignment 2: postgresql jsonb use jsonb in postgresql and compare with mongodb."><h3>Assignment 2: PostgreSQL JSONB</h3><p>Use JSONB in PostgreSQL and compare with MongoDB.</p><details><summary>How to run</summary><pre>psql -d your_database -f products.sql
+GET /notes -&gt; 200 (HTML, 446 chars)</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/lab/BackendLabExam">View code</a></div></article></div></section>
+<section id="theory"><div class="sec-head"><h2>Theory assignments and lectures</h2><p>Assignments and lecture practicals</p></div><div class="grid"><article class="card" data-group="theory" data-live="1" data-search="assignment 1: notes app create, edit, delete and search notes saved in localstorage. html/css javascript"><div class="card-top"><span class="num">01</span><span class="kicker">Assignment 1</span></div><h3>Notes App</h3><p>Create, edit, delete and search notes saved in localStorage.</p><ul class="tech"><li>HTML/CSS</li><li>JavaScript</li></ul><div class="more"><details><summary>How to run</summary><pre>Open index.html in a browser.</pre></details></div><div class="actions"><a class="btn primary" href="theory/Assignment/NotesApp/index.html">Open live page <span aria-hidden="true">&#8599;</span></a><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Assignment/NotesApp">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="assignment 2: postgresql jsonb use jsonb in postgresql and compare with mongodb. node.js mongodb postgresql"><div class="card-top"><span class="num">02</span><span class="kicker">Assignment 2</span></div><h3>PostgreSQL JSONB</h3><p>Use JSONB in PostgreSQL and compare with MongoDB.</p><ul class="tech"><li>Node.js</li><li>MongoDB</li><li>PostgreSQL</li></ul><div class="more"><details><summary>How to run</summary><pre>psql -d your_database -f products.sql
 npm install
-npm start</pre></details><details><summary>Show output</summary><pre># PostgreSQL
+npm start</pre></details><details><summary>Output</summary><pre># PostgreSQL
 (run on PGlite, PostgreSQL compiled to WebAssembly)
 
 {&quot;name&quot;:&quot;Eloquent JavaScript&quot;}
@@ -188,13 +246,13 @@ Execution Time: 0.745 ms
 Books over 470 pages: [ &#x27;Eloquent JavaScript&#x27; ]
 Laptops 16GB+: [ &#x27;ProBook 14&#x27; ]
 Black accessories: [ &#x27;Wireless Mouse&#x27; ]
-Wireless: [ &#x27;Wireless Mouse&#x27; ]</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Assignment/Assignment2">View code</a></p></article><article class="card" data-search="lecture 3: express and flask servers create first servers in express and flask."><h3>Lecture 3: Express and Flask servers</h3><p>Create first servers in Express and Flask.</p><details><summary>How to run</summary><pre>cd express-demo
+Wireless: [ &#x27;Wireless Mouse&#x27; ]</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Assignment/Assignment2">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 3: express and flask servers create first servers in express and flask. node.js express ejs flask"><div class="card-top"><span class="num">03</span><span class="kicker">Lecture 3</span></div><h3>Express and Flask servers</h3><p>Create first servers in Express and Flask.</p><ul class="tech"><li>Node.js</li><li>Express</li><li>EJS</li><li>Flask</li></ul><div class="more"><details><summary>How to run</summary><pre>cd express-demo
 npm install
 npm start
 # Flask
 cd flask-demo
 pip install -r requirements.txt
-python app.py</pre></details><details><summary>Show output</summary><pre>GET / -&gt; 200 (HTML, 37 chars)
+python app.py</pre></details><details><summary>Output</summary><pre>GET / -&gt; 200 (HTML, 37 chars)
 GET /students -&gt; 200 [{&quot;id&quot;:1,&quot;name&quot;:&quot;Aarav&quot;,&quot;branch&quot;:&quot;CSE&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;Diya&quot;,&quot;branch&quot;:&quot;ECE&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;Rohan&quot;,&quot;branch&quot;:&quot;CSE&quot;}]
 GET /students/2 -&gt; 200 {&quot;id&quot;:2,&quot;name&quot;:&quot;Diya&quot;,&quot;branch&quot;:&quot;ECE&quot;}
 GET /students/99 -&gt; 404 {&quot;error&quot;:&quot;Student not found&quot;}
@@ -205,8 +263,8 @@ GET /students -&gt; 200 [{&quot;branch&quot;:&quot;CSE&quot;,&quot;id&quot;:1,&q
 GET /students/9 -&gt; 404 {&quot;error&quot;:&quot;Student not found&quot;}
 POST /students -&gt; 201 {&quot;branch&quot;:&quot;IT&quot;,&quot;id&quot;:3,&quot;name&quot;:&quot;Rohan&quot;}
 POST /students -&gt; 400 {&quot;error&quot;:&quot;name and branch are required&quot;}
-GET /students/3 -&gt; 200 {&quot;branch&quot;:&quot;IT&quot;,&quot;id&quot;:3,&quot;name&quot;:&quot;Rohan&quot;}</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%203">View code</a></p></article><article class="card" data-search="lecture 4: http requests send requests with curl and fetch to the lecture 3 server."><h3>Lecture 4: HTTP requests</h3><p>Send requests with curl and fetch to the lecture 3 server.</p><details><summary>How to run</summary><pre>sh requests.sh
-node fetch.js</pre></details><details><summary>Show output</summary><pre>[
+GET /students/3 -&gt; 200 {&quot;branch&quot;:&quot;IT&quot;,&quot;id&quot;:3,&quot;name&quot;:&quot;Rohan&quot;}</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%203">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 4: http requests send requests with curl and fetch to the lecture 3 server. javascript"><div class="card-top"><span class="num">04</span><span class="kicker">Lecture 4</span></div><h3>HTTP requests</h3><p>Send requests with curl and fetch to the lecture 3 server.</p><ul class="tech"><li>JavaScript</li></ul><div class="more"><details><summary>How to run</summary><pre>sh requests.sh
+node fetch.js</pre></details><details><summary>Output</summary><pre>[
   { id: 1, name: &#x27;Aarav&#x27;, branch: &#x27;CSE&#x27; },
   { id: 3, name: &#x27;Rohan&#x27;, branch: &#x27;CSE&#x27; }
 ]
@@ -224,8 +282,8 @@ Content-Length: 117
 ETag: W/&quot;75-o9qnxMtTo+sd/Q4MjI4EKLUrdzo&quot;
 Date: Tue, 24 Nov 2026 08:46:10 GMT
 Connection: keep-alive
-Keep-Alive: timeout=5</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%204">View code</a></p></article><article class="card" data-search="lecture 5: rest api with fastapi create a course crud api with a department filter."><h3>Lecture 5: REST API with FastAPI</h3><p>Create a course CRUD API with a department filter.</p><details><summary>How to run</summary><pre>pip install -r requirements.txt
-uvicorn main:app --reload</pre></details><details><summary>Show output</summary><pre>GET /courses -&gt; 200 [{&quot;title&quot;:&quot;Backend Development&quot;,&quot;credits&quot;:4,&quot;department&quot;:&quot;CSE&quot;,&quot;id&quot;:1},{&quot;title&quot;:&quot;Digital Electronics&quot;,&quot;credits&quot;:3,&quot;department&quot;:&quot;ECE&quot;,&quot;id&quot;:2}]
+Keep-Alive: timeout=5</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%204">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 5: rest api with fastapi create a course crud api with a department filter. fastapi"><div class="card-top"><span class="num">05</span><span class="kicker">Lecture 5</span></div><h3>REST API with FastAPI</h3><p>Create a course CRUD API with a department filter.</p><ul class="tech"><li>FastAPI</li></ul><div class="more"><details><summary>How to run</summary><pre>pip install -r requirements.txt
+uvicorn main:app --reload</pre></details><details><summary>Output</summary><pre>GET /courses -&gt; 200 [{&quot;title&quot;:&quot;Backend Development&quot;,&quot;credits&quot;:4,&quot;department&quot;:&quot;CSE&quot;,&quot;id&quot;:1},{&quot;title&quot;:&quot;Digital Electronics&quot;,&quot;credits&quot;:3,&quot;department&quot;:&quot;ECE&quot;,&quot;id&quot;:2}]
 GET /courses?department=CSE -&gt; 200 [{&quot;title&quot;:&quot;Backend Development&quot;,&quot;credits&quot;:4,&quot;department&quot;:&quot;CSE&quot;,&quot;id&quot;:1}]
 POST /courses -&gt; 201 {&quot;title&quot;:&quot;DBMS&quot;,&quot;credits&quot;:4,&quot;department&quot;:&quot;CSE&quot;,&quot;id&quot;:3}
 PUT /courses/3 -&gt; 200 {&quot;title&quot;:&quot;DBMS&quot;,&quot;credits&quot;:3,&quot;department&quot;:&quot;IT&quot;,&quot;id&quot;:3}
@@ -233,8 +291,8 @@ DELETE /courses/3 -&gt; 204
 GET /courses/3 -&gt; 404 {&quot;detail&quot;:&quot;Course not found&quot;}
 POST /courses -&gt; 422 {&quot;detail&quot;:[{&quot;type&quot;:&quot;less_than_equal&quot;,&quot;loc&quot;:[&quot;body&quot;,&quot;credits&quot;],&quot;msg&quot;:&quot;Input should be less than or equal to 6&quot;,&quot;input&quot;:99,&quot;ctx&quot;:{&quot;le&quot;:6}}]}
 GET /docs -&gt; 200 (HTML, 1009 chars)
-GET /redoc -&gt; 200 (HTML, 891 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%205">View code</a></p></article><article class="card" data-search="lecture 6: sessions, cookies and query strings compare three ways to keep state."><h3>Lecture 6: Sessions, cookies and query strings</h3><p>Compare three ways to keep state.</p><details><summary>How to run</summary><pre>npm install
-npm start</pre></details><details><summary>Show output</summary><pre>GET /visits -&gt; 200 {&quot;visits&quot;:1}
+GET /redoc -&gt; 200 (HTML, 891 chars)</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%205">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 6: sessions, cookies and query strings compare three ways to keep state. node.js express sessions"><div class="card-top"><span class="num">06</span><span class="kicker">Lecture 6</span></div><h3>Sessions, cookies and query strings</h3><p>Compare three ways to keep state.</p><ul class="tech"><li>Node.js</li><li>Express</li><li>Sessions</li></ul><div class="more"><details><summary>How to run</summary><pre>npm install
+npm start</pre></details><details><summary>Output</summary><pre>GET /visits -&gt; 200 {&quot;visits&quot;:1}
 GET /visits -&gt; 200 {&quot;visits&quot;:2}
 GET /profile -&gt; 401 {&quot;error&quot;:&quot;Please log in&quot;}
 POST /login -&gt; 200 {&quot;message&quot;:&quot;Logged in&quot;}
@@ -243,19 +301,19 @@ POST /logout -&gt; 200 {&quot;message&quot;:&quot;Logged out&quot;}
 GET /profile -&gt; 401 {&quot;error&quot;:&quot;Please log in&quot;}
 GET /set-cookie -&gt; 200 {&quot;message&quot;:&quot;Cookie set&quot;}
 GET /get-cookie -&gt; 200 {&quot;language&quot;:&quot;en&quot;}
-GET /welcome?user=Devansh&amp;role=student -&gt; 200 {&quot;message&quot;:&quot;Welcome Devansh, your role is student&quot;}</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%206">View code</a></p></article><article class="card" data-search="lecture 7: web storage and json save objects in localstorage and sessionstorage."><h3>Lecture 7: Web storage and JSON</h3><p>Save objects in localStorage and sessionStorage.</p><details><summary>How to run</summary><pre>Open index.html in a browser.</pre></details><p class="links"><a class="live" href="theory/lecture%207/index.html">Open live page</a><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%207">View code</a></p></article><article class="card" data-search="lecture 8: server-side rendering render pages with ejs and jinja2 and serve static files."><h3>Lecture 8: Server-side rendering</h3><p>Render pages with EJS and Jinja2 and serve static files.</p><details><summary>How to run</summary><pre>cd express-ejs
+GET /welcome?user=Devansh&amp;role=student -&gt; 200 {&quot;message&quot;:&quot;Welcome Devansh, your role is student&quot;}</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%206">View code</a></div></article><article class="card" data-group="theory" data-live="1" data-search="lecture 7: web storage and json save objects in localstorage and sessionstorage. html/css javascript"><div class="card-top"><span class="num">07</span><span class="kicker">Lecture 7</span></div><h3>Web storage and JSON</h3><p>Save objects in localStorage and sessionStorage.</p><ul class="tech"><li>HTML/CSS</li><li>JavaScript</li></ul><div class="more"><details><summary>How to run</summary><pre>Open index.html in a browser.</pre></details></div><div class="actions"><a class="btn primary" href="theory/lecture%207/index.html">Open live page <span aria-hidden="true">&#8599;</span></a><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%207">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 8: server-side rendering render pages with ejs and jinja2 and serve static files. node.js express ejs fastapi jinja"><div class="card-top"><span class="num">08</span><span class="kicker">Lecture 8</span></div><h3>Server-side rendering</h3><p>Render pages with EJS and Jinja2 and serve static files.</p><ul class="tech"><li>Node.js</li><li>Express</li><li>EJS</li><li>FastAPI</li><li>Jinja</li></ul><div class="more"><details><summary>How to run</summary><pre>cd express-ejs
 npm install
 npm start
 # FastAPI
 cd fastapi-jinja
 pip install -r requirements.txt
-uvicorn main:app --reload</pre></details><details><summary>Show output</summary><pre>GET / -&gt; 200 (HTML, 491 chars)
+uvicorn main:app --reload</pre></details><details><summary>Output</summary><pre>GET / -&gt; 200 (HTML, 491 chars)
 GET /about -&gt; 200 (HTML, 243 chars)
 GET /style.css -&gt; 200 (HTML, 182 chars)
 GET / -&gt; 200 (HTML, 251 chars)
-GET /static/images/server.svg -&gt; 200 (HTML, 279 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%208">View code</a></p></article><article class="card" data-search="lecture 13: sql and mongodb do the same student queries in postgresql and mongodb."><h3>Lecture 13: SQL and MongoDB</h3><p>Do the same student queries in PostgreSQL and MongoDB.</p><details><summary>How to run</summary><pre>psql -d student_management -f students.sql
+GET /static/images/server.svg -&gt; 200 (HTML, 279 chars)</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%208">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 13: sql and mongodb do the same student queries in postgresql and mongodb. node.js mongodb postgresql"><div class="card-top"><span class="num">09</span><span class="kicker">Lecture 13</span></div><h3>SQL and MongoDB</h3><p>Do the same student queries in PostgreSQL and MongoDB.</p><ul class="tech"><li>Node.js</li><li>MongoDB</li><li>PostgreSQL</li></ul><div class="more"><details><summary>How to run</summary><pre>psql -d student_management -f students.sql
 npm install
-npm start</pre></details><details><summary>Show output</summary><pre># PostgreSQL
+npm start</pre></details><details><summary>Output</summary><pre># PostgreSQL
 {&quot;name&quot;:&quot;Aarav&quot;,&quot;email&quot;:&quot;aarav@example.com&quot;}
 {&quot;name&quot;:&quot;Rohan&quot;,&quot;email&quot;:&quot;rohan@example.com&quot;}
 
@@ -271,19 +329,19 @@ npm start</pre></details><details><summary>Show output</summary><pre># PostgreSQ
 # MongoDB
 CSE students: [ &#x27;Aarav&#x27;, &#x27;Rohan&#x27; ]
 After January 2024: [ &#x27;Diya&#x27;, &#x27;Rohan&#x27; ]
-After update and delete: [ &#x27;Diya&#x27;, &#x27;Rohan&#x27; ]</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%2013">View code</a></p></article><article class="card" data-search="lecture 14: schema design and normalization design a library schema and normalize an order table to 3nf. see er-diagram.md."><h3>Lecture 14: Schema design and normalization</h3><p>Design a library schema and normalize an order table to 3NF. See er-diagram.md.</p><details><summary>How to run</summary><pre>psql -d your_database -f library.sql
-psql -d your_database -f orders_3nf.sql</pre></details><details><summary>Show output</summary><pre># library.sql
+After update and delete: [ &#x27;Diya&#x27;, &#x27;Rohan&#x27; ]</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%2013">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 14: schema design and normalization design a library schema and normalize an order table to 3nf. see er-diagram.md. postgresql"><div class="card-top"><span class="num">10</span><span class="kicker">Lecture 14</span></div><h3>Schema design and normalization</h3><p>Design a library schema and normalize an order table to 3NF. See er-diagram.md.</p><ul class="tech"><li>PostgreSQL</li></ul><div class="more"><details><summary>How to run</summary><pre>psql -d your_database -f library.sql
+psql -d your_database -f orders_3nf.sql</pre></details><details><summary>Output</summary><pre># library.sql
 {&quot;member&quot;:&quot;Aarav&quot;,&quot;title&quot;:&quot;Database Basics&quot;,&quot;authors&quot;:&quot;Author A, Author B&quot;}
 {&quot;member&quot;:&quot;Aarav&quot;,&quot;title&quot;:&quot;Web Servers&quot;,&quot;authors&quot;:&quot;Author B&quot;}
 
 # orders_3nf.sql
 {&quot;order_id&quot;:1,&quot;name&quot;:&quot;Aarav&quot;,&quot;email&quot;:&quot;aarav@example.com&quot;,&quot;product&quot;:&quot;Laptop&quot;,&quot;price&quot;:&quot;65000.00&quot;,&quot;quantity&quot;:1}
 {&quot;order_id&quot;:1,&quot;name&quot;:&quot;Aarav&quot;,&quot;email&quot;:&quot;aarav@example.com&quot;,&quot;product&quot;:&quot;Mouse&quot;,&quot;price&quot;:&quot;500.00&quot;,&quot;quantity&quot;:2}
-{&quot;order_id&quot;:2,&quot;name&quot;:&quot;Diya&quot;,&quot;email&quot;:&quot;diya@example.com&quot;,&quot;product&quot;:&quot;Keyboard&quot;,&quot;price&quot;:&quot;1500.00&quot;,&quot;quantity&quot;:1}</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%2014">View code</a></p></article><article class="card" data-search="lecture 15: data modeling create sqlalchemy and mongoose models with validation. see ecommerce-model.md."><h3>Lecture 15: Data modeling</h3><p>Create SQLAlchemy and Mongoose models with validation. See ecommerce-model.md.</p><details><summary>How to run</summary><pre>pip install -r requirements.txt
+{&quot;order_id&quot;:2,&quot;name&quot;:&quot;Diya&quot;,&quot;email&quot;:&quot;diya@example.com&quot;,&quot;product&quot;:&quot;Keyboard&quot;,&quot;price&quot;:&quot;1500.00&quot;,&quot;quantity&quot;:1}</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/lecture%2014">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 15: data modeling create sqlalchemy and mongoose models with validation. see ecommerce-model.md. node.js mongodb sqlalchemy"><div class="card-top"><span class="num">11</span><span class="kicker">Lecture 15</span></div><h3>Data modeling</h3><p>Create SQLAlchemy and Mongoose models with validation. See ecommerce-model.md.</p><ul class="tech"><li>Node.js</li><li>MongoDB</li><li>SQLAlchemy</li></ul><div class="more"><details><summary>How to run</summary><pre>pip install -r requirements.txt
 python crud.py
 cd blog
 npm install
-npm start</pre></details><details><summary>Show output</summary><pre>Created: Aarav in Computer Science
+npm start</pre></details><details><summary>Output</summary><pre>Created: Aarav in Computer Science
 CSE students: [&#x27;Aarav&#x27;]
 New branch: IT
 Duplicate email rejected
@@ -293,8 +351,8 @@ Enrollments after delete: 0
 # Mongoose
 Diya commented on &quot;Mongoose&quot;
 Enum check: `unknown` is not a valid enum value for path `status`.
-Unique check: error code 11000</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture15">View code</a></p></article><article class="card" data-search="lecture 19: implementing rest apis build a student api with filters, pagination, enrollments and error handling."><h3>Lecture 19: Implementing REST APIs</h3><p>Build a student API with filters, pagination, enrollments and error handling.</p><details><summary>How to run</summary><pre>pip install -r requirements.txt
-uvicorn main:app --reload</pre></details><details><summary>Show output</summary><pre>POST /students -&gt; 201 {&quot;name&quot;:&quot;Aarav&quot;,&quot;email&quot;:&quot;aarav@example.com&quot;,&quot;branch&quot;:&quot;CSE&quot;,&quot;department&quot;:&quot;Computing&quot;,&quot;id&quot;:1}
+Unique check: error code 11000</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture15">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 19: implementing rest apis build a student api with filters, pagination, enrollments and error handling. fastapi sqlalchemy"><div class="card-top"><span class="num">12</span><span class="kicker">Lecture 19</span></div><h3>Implementing REST APIs</h3><p>Build a student API with filters, pagination, enrollments and error handling.</p><ul class="tech"><li>FastAPI</li><li>SQLAlchemy</li></ul><div class="more"><details><summary>How to run</summary><pre>pip install -r requirements.txt
+uvicorn main:app --reload</pre></details><details><summary>Output</summary><pre>POST /students -&gt; 201 {&quot;name&quot;:&quot;Aarav&quot;,&quot;email&quot;:&quot;aarav@example.com&quot;,&quot;branch&quot;:&quot;CSE&quot;,&quot;department&quot;:&quot;Computing&quot;,&quot;id&quot;:1}
 POST /students -&gt; 409 {&quot;detail&quot;:&quot;Email already exists&quot;}
 POST /students -&gt; 422 {&quot;detail&quot;:[{&quot;type&quot;:&quot;value_error&quot;,&quot;loc&quot;:[&quot;body&quot;,&quot;email&quot;],&quot;msg&quot;:&quot;value is not a valid email address: An email address must have an @-sign.&quot;,&quot;input&quot;:&quot;bad&quot;,&quot;ctx&quot;:{&quot;reason&quot;:&quot;An email address must have an @-sign.&quot;}}]}
 POST /students -&gt; 201 {&quot;name&quot;:&quot;Diya&quot;,&quot;email&quot;:&quot;diya@example.com&quot;,&quot;branch&quot;:&quot;IT&quot;,&quot;department&quot;:&quot;Computing&quot;,&quot;id&quot;:2}
@@ -311,12 +369,12 @@ POST /students/1/enrollments -&gt; 404 {&quot;detail&quot;:&quot;Course not foun
 GET /students/1/enrollments -&gt; 200 [{&quot;id&quot;:1,&quot;course&quot;:{&quot;code&quot;:&quot;CSFS3008P&quot;,&quot;title&quot;:&quot;Backend Development&quot;,&quot;id&quot;:1}}]
 DELETE /students/1 -&gt; 204
 GET /students/1 -&gt; 404 {&quot;detail&quot;:&quot;Student not found&quot;}
-GET /docs -&gt; 200 (HTML, 1021 chars)</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture19_RESTful_APIs">View code</a></p></article><article class="card" data-search="lecture 26: django framework create a django project that returns json."><h3>Lecture 26: Django framework</h3><p>Create a Django project that returns JSON.</p><details><summary>How to run</summary><pre>pip install -r requirements.txt
+GET /docs -&gt; 200 (HTML, 1021 chars)</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture19_RESTful_APIs">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 26: django framework create a django project that returns json. django"><div class="card-top"><span class="num">13</span><span class="kicker">Lecture 26</span></div><h3>Django framework</h3><p>Create a Django project that returns JSON.</p><ul class="tech"><li>Django</li></ul><div class="more"><details><summary>How to run</summary><pre>pip install -r requirements.txt
 python manage.py migrate
-python manage.py runserver</pre></details><details><summary>Show output</summary><pre>GET / -&gt; 200 {&quot;message&quot;: &quot;Welcome to the Student Management API&quot;, &quot;version&quot;: &quot;1.0&quot;, &quot;status&quot;: &quot;running&quot;}
+python manage.py runserver</pre></details><details><summary>Output</summary><pre>GET / -&gt; 200 {&quot;message&quot;: &quot;Welcome to the Student Management API&quot;, &quot;version&quot;: &quot;1.0&quot;, &quot;status&quot;: &quot;running&quot;}
 GET /welcome/ -&gt; 200 (HTML, 46 chars)
-GET /health/ -&gt; 200 {&quot;status&quot;: &quot;ok&quot;}</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture26_Django_Framework">View code</a></p></article><article class="card" data-search="lecture 29: django testing and debugging test views, a model and a mocked external service."><h3>Lecture 29: Django testing and debugging</h3><p>Test views, a model and a mocked external service.</p><details><summary>How to run</summary><pre>pip install -r requirements.txt
-python manage.py test</pre></details><details><summary>Show output</summary><pre> identified no issues (0 silenced).
+GET /health/ -&gt; 200 {&quot;status&quot;: &quot;ok&quot;}</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture26_Django_Framework">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 29: django testing and debugging test views, a model and a mocked external service. django"><div class="card-top"><span class="num">14</span><span class="kicker">Lecture 29</span></div><h3>Django testing and debugging</h3><p>Test views, a model and a mocked external service.</p><ul class="tech"><li>Django</li></ul><div class="more"><details><summary>How to run</summary><pre>pip install -r requirements.txt
+python manage.py test</pre></details><details><summary>Output</summary><pre> identified no issues (0 silenced).
 Creating test database for alias &#x27;default&#x27; (&#x27;file:memorydb_default?mode=memory&amp;cache=shared&#x27;)...
 
 test_detail (students.tests.StudentAPITest.test_detail) ... ok
@@ -329,24 +387,30 @@ test_success (students.tests.ExternalServiceTest.test_success) ... ok
 test_timeout (students.tests.ExternalServiceTest.test_timeout) ... ok
 
 ----------------------------------------------------------------------
-Ran 8 tests in 0.015s
+Ran 8 tests in 0.057s
 
 OK
-Destroying test database for alias &#x27;default&#x27; (&#x27;file:memorydb_default?mode=memory&amp;cache=shared&#x27;)...</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture29_Django_Testing_Debugging">View code</a></p></article><article class="card" data-search="lecture 37: deployment environments read settings and secrets from environment variables."><h3>Lecture 37: Deployment environments</h3><p>Read settings and secrets from environment variables.</p><details><summary>How to run</summary><pre>npm install
+Destroying test database for alias &#x27;default&#x27; (&#x27;file:memorydb_default?mode=memory&amp;cache=shared&#x27;)...</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture29_Django_Testing_Debugging">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 37: deployment environments read settings and secrets from environment variables. node.js express"><div class="card-top"><span class="num">15</span><span class="kicker">Lecture 37</span></div><h3>Deployment environments</h3><p>Read settings and secrets from environment variables.</p><ul class="tech"><li>Node.js</li><li>Express</li></ul><div class="more"><details><summary>How to run</summary><pre>npm install
 cp .env.example .env
-npm start</pre></details><details><summary>Show output</summary><pre>GET /health -&gt; 200 {&quot;status&quot;:&quot;healthy&quot;,&quot;environment&quot;:&quot;staging&quot;}
+npm start</pre></details><details><summary>Output</summary><pre>GET /health -&gt; 200 {&quot;status&quot;:&quot;healthy&quot;,&quot;environment&quot;:&quot;staging&quot;}
 GET /config -&gt; 200 {&quot;environment&quot;:&quot;staging&quot;,&quot;apiKeySet&quot;:true}
-APP_ENV=production without API_KEY -&gt; exits with: API_KEY is required in production</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture_37_Deployment_Environments">View code</a></p></article><article class="card" data-search="lecture 39: docker practical containerize the same student api in fastapi and express."><h3>Lecture 39: Docker practical</h3><p>Containerize the same Student API in FastAPI and Express.</p><details><summary>How to run</summary><pre>docker build -t student-api-fastapi:1.0 fastapi-app
+APP_ENV=production without API_KEY -&gt; exits with: API_KEY is required in production</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture_37_Deployment_Environments">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="lecture 39: docker practical containerize the same student api in fastapi and express. node.js express fastapi docker"><div class="card-top"><span class="num">16</span><span class="kicker">Lecture 39</span></div><h3>Docker practical</h3><p>Containerize the same Student API in FastAPI and Express.</p><ul class="tech"><li>Node.js</li><li>Express</li><li>FastAPI</li><li>Docker</li></ul><div class="more"><details><summary>How to run</summary><pre>docker build -t student-api-fastapi:1.0 fastapi-app
 docker run -d --name student-fastapi -p 8000:8000 student-api-fastapi:1.0
 docker build -t student-api-express:1.0 express-app
-docker run -d --name student-express -p 3000:3000 student-api-express:1.0</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture_39_Docker_Practical">View code</a></p></article><article class="card" data-search="docker express practical run an express app using a dockerfile and docker compose."><h3>Docker Express practical</h3><p>Run an Express app using a Dockerfile and Docker Compose.</p><details><summary>How to run</summary><pre>docker compose up --build</pre></details><p class="links"><a href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Docker_Express_Practical">View code</a></p></article></div>
+docker run -d --name student-express -p 3000:3000 student-api-express:1.0</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Lecture_39_Docker_Practical">View code</a></div></article><article class="card" data-group="theory" data-live="0" data-search="docker express practical run an express app using a dockerfile and docker compose. node.js express docker"><div class="card-top"><span class="num">17</span><span class="kicker">Docker Express practical</span></div><h3>Docker Express practical</h3><p>Run an Express app using a Dockerfile and Docker Compose.</p><ul class="tech"><li>Node.js</li><li>Express</li><li>Docker</li></ul><div class="more"><details><summary>How to run</summary><pre>docker compose up --build</pre></details></div><div class="actions"><a class="btn" href="https://github.com/Devanshpurohit17/BackendLab/tree/main/theory/Docker_Express_Practical">View code</a></div></article></div></section>
+<p class="empty" id="empty">Nothing matches your search.</p>
 </main>
-<footer class="mute">Server programs cannot run on GitHub Pages, so their recorded test output is shown. The code and written answers in this repository were generated with the help of an AI tool, as disclosed under the course AI policy.</footer>
+<footer><div class="wrap"><p>Server programs cannot run on GitHub Pages, so their recorded test output is shown under each item. The code and written answers in this repository were generated with the help of an AI tool, as disclosed under the course AI policy.</p><p>&copy; 2026 Devansh Purohit</p></div></footer>
 <script>
-document.getElementById("search").addEventListener("input",function(e){
-  const q=e.target.value.toLowerCase();
-  document.querySelectorAll(".card").forEach(c=>c.hidden=!c.dataset.search.includes(q));
-});
+const cards=[...document.querySelectorAll(".card")],q=document.getElementById("search"),count=document.getElementById("count");let f="all";
+function apply(){const s=q.value.trim().toLowerCase();let n=0;
+cards.forEach(c=>{const ok=c.dataset.search.includes(s)&&(f==="all"||(f==="live"?c.dataset.live==="1":c.dataset.group===f));c.hidden=!ok;if(ok)n++;});
+document.querySelectorAll("main section").forEach(sec=>sec.hidden=!sec.querySelector(".card:not([hidden])"));
+document.getElementById("empty").style.display=n?"none":"block";count.textContent=n+" of "+cards.length+" shown";}
+q.addEventListener("input",apply);
+document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>{f=b.dataset.f;document.querySelectorAll(".filters button").forEach(x=>x.setAttribute("aria-pressed",x===b));apply();}));
+document.getElementById("theme").addEventListener("click",()=>{const r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;r.dataset.theme=dark?"light":"dark";localStorage.setItem("theme",r.dataset.theme);});
+apply();
 </script>
 </body>
 </html>
